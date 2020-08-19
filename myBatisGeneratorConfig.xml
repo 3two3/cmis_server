@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/cmis?characterEncoding=utf-8" userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.inspur.bean" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置,mapper接口-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.inspur.dao" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table tableName="gzcrm_certificate" domainObjectName="Certificate"/>
+        <table tableName="gzcrm_cinfo" domainObjectName="Cinfo"/>
+        <table tableName="gzcrm_cmarketing_record" domainObjectName="CmarketingRecord"/>
+        <table tableName="gzcrm_cmass" domainObjectName="Cmass"/>
+        <table tableName="gzcrm_cminfo" domainObjectName="Cminfo"/>
+        <table tableName="gzcrm_cminfo_work" domainObjectName="CminfoWork"/>
+        <table tableName="gzcrm_cmlevel" domainObjectName="Cmlevel"/>
+        <table tableName="gzcrm_cmltr" domainObjectName="Cmltr"/>
+        <table tableName="gzcrm_cmregular" domainObjectName="Cmregular"/>
+        <table tableName="gzcrm_cmresults" domainObjectName="Cmresults"/>
+        <table tableName="gzcrm_cmrpr" domainObjectName="Cmrpr"/>
+        <table tableName="gzcrm_cmwork" domainObjectName="Cmwork"/>
+        <table tableName="gzcrm_dict" domainObjectName="CDict"/>
+        <table tableName="gzcrm_dict_type" domainObjectName="CDictType"/>
+        <table tableName="gzcrm_learn" domainObjectName="CLearn"/>
+        <table tableName="gzcrm_member" domainObjectName="CMember"/>
+        <table tableName="gzcrm_menu" domainObjectName="CMenu"/>
+        <table tableName="gzcrm_menu_parent" domainObjectName="CMenuParent"/>
+    </context>
+</generatorConfiguration>

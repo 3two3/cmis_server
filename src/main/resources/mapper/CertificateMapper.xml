@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CertificateMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.Certificate">
+    <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
+    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_CERTIFICATE_NAME" jdbcType="VARCHAR" property="cmCertificateName" />
+    <result column="CM_CERTIFICATE_TYPE" jdbcType="VARCHAR" property="cmCertificateType" />
+    <result column="CM_CERTIFICATE_NO" jdbcType="VARCHAR" property="cmCertificateNo" />
+    <result column="CM_CERTIFICATE_UNIT" jdbcType="VARCHAR" property="cmCertificateUnit" />
+    <result column="CM_START_DATE" jdbcType="VARCHAR" property="cmStartDate" />
+    <result column="CM_END_DATE" jdbcType="VARCHAR" property="cmEndDate" />
+    <result column="CM_PERIOD" jdbcType="INTEGER" property="cmPeriod" />
+    <result column="CM_CERTIFICATE_URL" jdbcType="VARCHAR" property="cmCertificateUrl" />
+    <result column="CM_INVALID" jdbcType="VARCHAR" property="cmInvalid" />
+    <result column="CM_REMARK" jdbcType="VARCHAR" property="cmRemark" />
+    <result column="CM_MODIFICATION_DATE" jdbcType="VARCHAR" property="cmModificationDate" />
+    <result column="CM_MODIFICATION_PERSON" jdbcType="VARCHAR" property="cmModificationPerson" />
+    <result column="CM_REMARKS" jdbcType="VARCHAR" property="cmRemarks" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CM_KEY, CM_ID, CM_CERTIFICATE_NAME, CM_CERTIFICATE_TYPE, CM_CERTIFICATE_NO, CM_CERTIFICATE_UNIT, 
+    CM_START_DATE, CM_END_DATE, CM_PERIOD, CM_CERTIFICATE_URL, CM_INVALID, CM_REMARK, 
+    CM_MODIFICATION_DATE, CM_MODIFICATION_PERSON, CM_REMARKS, DEL_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.inspur.bean.CertificateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_certificate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_certificate
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_certificate
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CertificateExample">
+    delete from gzcrm_certificate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.Certificate">
+    insert into gzcrm_certificate (CM_KEY, CM_ID, CM_CERTIFICATE_NAME, 
+      CM_CERTIFICATE_TYPE, CM_CERTIFICATE_NO, CM_CERTIFICATE_UNIT, 
+      CM_START_DATE, CM_END_DATE, CM_PERIOD, 
+      CM_CERTIFICATE_URL, CM_INVALID, CM_REMARK, 
+      CM_MODIFICATION_DATE, CM_MODIFICATION_PERSON, 
+      CM_REMARKS, DEL_FLAG)
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmCertificateName,jdbcType=VARCHAR}, 
+      #{cmCertificateType,jdbcType=VARCHAR}, #{cmCertificateNo,jdbcType=VARCHAR}, #{cmCertificateUnit,jdbcType=VARCHAR}, 
+      #{cmStartDate,jdbcType=VARCHAR}, #{cmEndDate,jdbcType=VARCHAR}, #{cmPeriod,jdbcType=INTEGER}, 
+      #{cmCertificateUrl,jdbcType=VARCHAR}, #{cmInvalid,jdbcType=VARCHAR}, #{cmRemark,jdbcType=VARCHAR}, 
+      #{cmModificationDate,jdbcType=VARCHAR}, #{cmModificationPerson,jdbcType=VARCHAR}, 
+      #{cmRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.Certificate">
+    insert into gzcrm_certificate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmKey != null">
+        CM_KEY,
+      </if>
+      <if test="cmId != null">
+        CM_ID,
+      </if>
+      <if test="cmCertificateName != null">
+        CM_CERTIFICATE_NAME,
+      </if>
+      <if test="cmCertificateType != null">
+        CM_CERTIFICATE_TYPE,
+      </if>
+      <if test="cmCertificateNo != null">
+        CM_CERTIFICATE_NO,
+      </if>
+      <if test="cmCertificateUnit != null">
+        CM_CERTIFICATE_UNIT,
+      </if>
+      <if test="cmStartDate != null">
+        CM_START_DATE,
+      </if>
+      <if test="cmEndDate != null">
+        CM_END_DATE,
+      </if>
+      <if test="cmPeriod != null">
+        CM_PERIOD,
+      </if>
+      <if test="cmCertificateUrl != null">
+        CM_CERTIFICATE_URL,
+      </if>
+      <if test="cmInvalid != null">
+        CM_INVALID,
+      </if>
+      <if test="cmRemark != null">
+        CM_REMARK,
+      </if>
+      <if test="cmModificationDate != null">
+        CM_MODIFICATION_DATE,
+      </if>
+      <if test="cmModificationPerson != null">
+        CM_MODIFICATION_PERSON,
+      </if>
+      <if test="cmRemarks != null">
+        CM_REMARKS,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmKey != null">
+        #{cmKey,jdbcType=INTEGER},
+      </if>
+      <if test="cmId != null">
+        #{cmId,jdbcType=CHAR},
+      </if>
+      <if test="cmCertificateName != null">
+        #{cmCertificateName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCertificateType != null">
+        #{cmCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCertificateNo != null">
+        #{cmCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCertificateUnit != null">
+        #{cmCertificateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cmStartDate != null">
+        #{cmStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmEndDate != null">
+        #{cmEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmPeriod != null">
+        #{cmPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="cmCertificateUrl != null">
+        #{cmCertificateUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cmInvalid != null">
+        #{cmInvalid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemark != null">
+        #{cmRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationDate != null">
+        #{cmModificationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationPerson != null">
+        #{cmModificationPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemarks != null">
+        #{cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CertificateExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_certificate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_certificate
+    <set>
+      <if test="record.cmKey != null">
+        CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmId != null">
+        CM_ID = #{record.cmId,jdbcType=CHAR},
+      </if>
+      <if test="record.cmCertificateName != null">
+        CM_CERTIFICATE_NAME = #{record.cmCertificateName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmCertificateType != null">
+        CM_CERTIFICATE_TYPE = #{record.cmCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmCertificateNo != null">
+        CM_CERTIFICATE_NO = #{record.cmCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmCertificateUnit != null">
+        CM_CERTIFICATE_UNIT = #{record.cmCertificateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmStartDate != null">
+        CM_START_DATE = #{record.cmStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmEndDate != null">
+        CM_END_DATE = #{record.cmEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmPeriod != null">
+        CM_PERIOD = #{record.cmPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmCertificateUrl != null">
+        CM_CERTIFICATE_URL = #{record.cmCertificateUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmInvalid != null">
+        CM_INVALID = #{record.cmInvalid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmRemark != null">
+        CM_REMARK = #{record.cmRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmModificationDate != null">
+        CM_MODIFICATION_DATE = #{record.cmModificationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmModificationPerson != null">
+        CM_MODIFICATION_PERSON = #{record.cmModificationPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmRemarks != null">
+        CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_certificate
+    set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_CERTIFICATE_NAME = #{record.cmCertificateName,jdbcType=VARCHAR},
+      CM_CERTIFICATE_TYPE = #{record.cmCertificateType,jdbcType=VARCHAR},
+      CM_CERTIFICATE_NO = #{record.cmCertificateNo,jdbcType=VARCHAR},
+      CM_CERTIFICATE_UNIT = #{record.cmCertificateUnit,jdbcType=VARCHAR},
+      CM_START_DATE = #{record.cmStartDate,jdbcType=VARCHAR},
+      CM_END_DATE = #{record.cmEndDate,jdbcType=VARCHAR},
+      CM_PERIOD = #{record.cmPeriod,jdbcType=INTEGER},
+      CM_CERTIFICATE_URL = #{record.cmCertificateUrl,jdbcType=VARCHAR},
+      CM_INVALID = #{record.cmInvalid,jdbcType=VARCHAR},
+      CM_REMARK = #{record.cmRemark,jdbcType=VARCHAR},
+      CM_MODIFICATION_DATE = #{record.cmModificationDate,jdbcType=VARCHAR},
+      CM_MODIFICATION_PERSON = #{record.cmModificationPerson,jdbcType=VARCHAR},
+      CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.Certificate">
+    update gzcrm_certificate
+    <set>
+      <if test="cmId != null">
+        CM_ID = #{cmId,jdbcType=CHAR},
+      </if>
+      <if test="cmCertificateName != null">
+        CM_CERTIFICATE_NAME = #{cmCertificateName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCertificateType != null">
+        CM_CERTIFICATE_TYPE = #{cmCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCertificateNo != null">
+        CM_CERTIFICATE_NO = #{cmCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCertificateUnit != null">
+        CM_CERTIFICATE_UNIT = #{cmCertificateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cmStartDate != null">
+        CM_START_DATE = #{cmStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmEndDate != null">
+        CM_END_DATE = #{cmEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmPeriod != null">
+        CM_PERIOD = #{cmPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="cmCertificateUrl != null">
+        CM_CERTIFICATE_URL = #{cmCertificateUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cmInvalid != null">
+        CM_INVALID = #{cmInvalid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemark != null">
+        CM_REMARK = #{cmRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationDate != null">
+        CM_MODIFICATION_DATE = #{cmModificationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationPerson != null">
+        CM_MODIFICATION_PERSON = #{cmModificationPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemarks != null">
+        CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Certificate">
+    update gzcrm_certificate
+    set CM_ID = #{cmId,jdbcType=CHAR},
+      CM_CERTIFICATE_NAME = #{cmCertificateName,jdbcType=VARCHAR},
+      CM_CERTIFICATE_TYPE = #{cmCertificateType,jdbcType=VARCHAR},
+      CM_CERTIFICATE_NO = #{cmCertificateNo,jdbcType=VARCHAR},
+      CM_CERTIFICATE_UNIT = #{cmCertificateUnit,jdbcType=VARCHAR},
+      CM_START_DATE = #{cmStartDate,jdbcType=VARCHAR},
+      CM_END_DATE = #{cmEndDate,jdbcType=VARCHAR},
+      CM_PERIOD = #{cmPeriod,jdbcType=INTEGER},
+      CM_CERTIFICATE_URL = #{cmCertificateUrl,jdbcType=VARCHAR},
+      CM_INVALID = #{cmInvalid,jdbcType=VARCHAR},
+      CM_REMARK = #{cmRemark,jdbcType=VARCHAR},
+      CM_MODIFICATION_DATE = #{cmModificationDate,jdbcType=VARCHAR},
+      CM_MODIFICATION_PERSON = #{cmModificationPerson,jdbcType=VARCHAR},
+      CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR}
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+</mapper>

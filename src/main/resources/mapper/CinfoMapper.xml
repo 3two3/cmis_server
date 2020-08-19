@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CinfoMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.Cinfo">
+    <id column="C_KEY" jdbcType="INTEGER" property="cKey" />
+    <result column="C_CM_ID" jdbcType="INTEGER" property="cCmId" />
+    <result column="C_SSN" jdbcType="VARCHAR" property="cSsn" />
+    <result column="C_NAME" jdbcType="VARCHAR" property="cName" />
+    <result column="C_TEL" jdbcType="VARCHAR" property="cTel" />
+    <result column="C_SALARY" jdbcType="DECIMAL" property="cSalary" />
+    <result column="C_BALANCE" jdbcType="DECIMAL" property="cBalance" />
+    <result column="C_DEBT" jdbcType="DECIMAL" property="cDebt" />
+    <result column="C_BUSINESS" jdbcType="VARCHAR" property="cBusiness" />
+    <result column="C_UNIT" jdbcType="VARCHAR" property="cUnit" />
+    <result column="C_ADD" jdbcType="VARCHAR" property="cAdd" />
+    <result column="C_REMARKS" jdbcType="VARCHAR" property="cRemarks" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    C_KEY, C_CM_ID, C_SSN, C_NAME, C_TEL, C_SALARY, C_BALANCE, C_DEBT, C_BUSINESS, C_UNIT, 
+    C_ADD, C_REMARKS, DEL_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.inspur.bean.CinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_cinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_cinfo
+    where C_KEY = #{cKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cinfo
+    where C_KEY = #{cKey,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CinfoExample">
+    delete from gzcrm_cinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.Cinfo">
+    insert into gzcrm_cinfo (C_KEY, C_CM_ID, C_SSN, 
+      C_NAME, C_TEL, C_SALARY, 
+      C_BALANCE, C_DEBT, C_BUSINESS, 
+      C_UNIT, C_ADD, C_REMARKS, 
+      DEL_FLAG)
+    values (#{cKey,jdbcType=INTEGER}, #{cCmId,jdbcType=INTEGER}, #{cSsn,jdbcType=VARCHAR}, 
+      #{cName,jdbcType=VARCHAR}, #{cTel,jdbcType=VARCHAR}, #{cSalary,jdbcType=DECIMAL}, 
+      #{cBalance,jdbcType=DECIMAL}, #{cDebt,jdbcType=DECIMAL}, #{cBusiness,jdbcType=VARCHAR}, 
+      #{cUnit,jdbcType=VARCHAR}, #{cAdd,jdbcType=VARCHAR}, #{cRemarks,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.Cinfo">
+    insert into gzcrm_cinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cKey != null">
+        C_KEY,
+      </if>
+      <if test="cCmId != null">
+        C_CM_ID,
+      </if>
+      <if test="cSsn != null">
+        C_SSN,
+      </if>
+      <if test="cName != null">
+        C_NAME,
+      </if>
+      <if test="cTel != null">
+        C_TEL,
+      </if>
+      <if test="cSalary != null">
+        C_SALARY,
+      </if>
+      <if test="cBalance != null">
+        C_BALANCE,
+      </if>
+      <if test="cDebt != null">
+        C_DEBT,
+      </if>
+      <if test="cBusiness != null">
+        C_BUSINESS,
+      </if>
+      <if test="cUnit != null">
+        C_UNIT,
+      </if>
+      <if test="cAdd != null">
+        C_ADD,
+      </if>
+      <if test="cRemarks != null">
+        C_REMARKS,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cKey != null">
+        #{cKey,jdbcType=INTEGER},
+      </if>
+      <if test="cCmId != null">
+        #{cCmId,jdbcType=INTEGER},
+      </if>
+      <if test="cSsn != null">
+        #{cSsn,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel != null">
+        #{cTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cSalary != null">
+        #{cSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="cBalance != null">
+        #{cBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="cDebt != null">
+        #{cDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="cBusiness != null">
+        #{cBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="cUnit != null">
+        #{cUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cAdd != null">
+        #{cAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="cRemarks != null">
+        #{cRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CinfoExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_cinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_cinfo
+    <set>
+      <if test="record.cKey != null">
+        C_KEY = #{record.cKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.cCmId != null">
+        C_CM_ID = #{record.cCmId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cSsn != null">
+        C_SSN = #{record.cSsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cName != null">
+        C_NAME = #{record.cName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTel != null">
+        C_TEL = #{record.cTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cSalary != null">
+        C_SALARY = #{record.cSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cBalance != null">
+        C_BALANCE = #{record.cBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cDebt != null">
+        C_DEBT = #{record.cDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cBusiness != null">
+        C_BUSINESS = #{record.cBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cUnit != null">
+        C_UNIT = #{record.cUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cAdd != null">
+        C_ADD = #{record.cAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cRemarks != null">
+        C_REMARKS = #{record.cRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_cinfo
+    set C_KEY = #{record.cKey,jdbcType=INTEGER},
+      C_CM_ID = #{record.cCmId,jdbcType=INTEGER},
+      C_SSN = #{record.cSsn,jdbcType=VARCHAR},
+      C_NAME = #{record.cName,jdbcType=VARCHAR},
+      C_TEL = #{record.cTel,jdbcType=VARCHAR},
+      C_SALARY = #{record.cSalary,jdbcType=DECIMAL},
+      C_BALANCE = #{record.cBalance,jdbcType=DECIMAL},
+      C_DEBT = #{record.cDebt,jdbcType=DECIMAL},
+      C_BUSINESS = #{record.cBusiness,jdbcType=VARCHAR},
+      C_UNIT = #{record.cUnit,jdbcType=VARCHAR},
+      C_ADD = #{record.cAdd,jdbcType=VARCHAR},
+      C_REMARKS = #{record.cRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.Cinfo">
+    update gzcrm_cinfo
+    <set>
+      <if test="cCmId != null">
+        C_CM_ID = #{cCmId,jdbcType=INTEGER},
+      </if>
+      <if test="cSsn != null">
+        C_SSN = #{cSsn,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null">
+        C_NAME = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel != null">
+        C_TEL = #{cTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cSalary != null">
+        C_SALARY = #{cSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="cBalance != null">
+        C_BALANCE = #{cBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="cDebt != null">
+        C_DEBT = #{cDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="cBusiness != null">
+        C_BUSINESS = #{cBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="cUnit != null">
+        C_UNIT = #{cUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cAdd != null">
+        C_ADD = #{cAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="cRemarks != null">
+        C_REMARKS = #{cRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where C_KEY = #{cKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Cinfo">
+    update gzcrm_cinfo
+    set C_CM_ID = #{cCmId,jdbcType=INTEGER},
+      C_SSN = #{cSsn,jdbcType=VARCHAR},
+      C_NAME = #{cName,jdbcType=VARCHAR},
+      C_TEL = #{cTel,jdbcType=VARCHAR},
+      C_SALARY = #{cSalary,jdbcType=DECIMAL},
+      C_BALANCE = #{cBalance,jdbcType=DECIMAL},
+      C_DEBT = #{cDebt,jdbcType=DECIMAL},
+      C_BUSINESS = #{cBusiness,jdbcType=VARCHAR},
+      C_UNIT = #{cUnit,jdbcType=VARCHAR},
+      C_ADD = #{cAdd,jdbcType=VARCHAR},
+      C_REMARKS = #{cRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR}
+    where C_KEY = #{cKey,jdbcType=INTEGER}
+  </update>
+</mapper>

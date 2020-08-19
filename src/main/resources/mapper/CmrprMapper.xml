@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CmrprMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.Cmrpr">
+    <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
+    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_TPYE" jdbcType="VARCHAR" property="cmTpye" />
+    <result column="CM_SUB" jdbcType="VARCHAR" property="cmSub" />
+    <result column="CM_DATE" jdbcType="VARCHAR" property="cmDate" />
+    <result column="CM_AUNIT" jdbcType="VARCHAR" property="cmAunit" />
+    <result column="CM_APERSON" jdbcType="VARCHAR" property="cmAperson" />
+    <result column="CM_RDATE" jdbcType="VARCHAR" property="cmRdate" />
+    <result column="CM_AREASON" jdbcType="VARCHAR" property="cmAreason" />
+    <result column="CM_REMARK" jdbcType="VARCHAR" property="cmRemark" />
+    <result column="CM_ATTACHMENT" jdbcType="VARCHAR" property="cmAttachment" />
+    <result column="CM_MODIFICATION_DATE" jdbcType="VARCHAR" property="cmModificationDate" />
+    <result column="CM_MODIFICATION_PERSON" jdbcType="VARCHAR" property="cmModificationPerson" />
+    <result column="CM_REMARKS" jdbcType="VARCHAR" property="cmRemarks" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CM_KEY, CM_ID, CM_TPYE, CM_SUB, CM_DATE, CM_AUNIT, CM_APERSON, CM_RDATE, CM_AREASON, 
+    CM_REMARK, CM_ATTACHMENT, CM_MODIFICATION_DATE, CM_MODIFICATION_PERSON, CM_REMARKS, 
+    DEL_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.inspur.bean.CmrprExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_cmrpr
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_cmrpr
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cmrpr
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CmrprExample">
+    delete from gzcrm_cmrpr
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.Cmrpr">
+    insert into gzcrm_cmrpr (CM_KEY, CM_ID, CM_TPYE, 
+      CM_SUB, CM_DATE, CM_AUNIT, 
+      CM_APERSON, CM_RDATE, CM_AREASON, 
+      CM_REMARK, CM_ATTACHMENT, CM_MODIFICATION_DATE, 
+      CM_MODIFICATION_PERSON, CM_REMARKS, DEL_FLAG
+      )
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmTpye,jdbcType=VARCHAR}, 
+      #{cmSub,jdbcType=VARCHAR}, #{cmDate,jdbcType=VARCHAR}, #{cmAunit,jdbcType=VARCHAR}, 
+      #{cmAperson,jdbcType=VARCHAR}, #{cmRdate,jdbcType=VARCHAR}, #{cmAreason,jdbcType=VARCHAR}, 
+      #{cmRemark,jdbcType=VARCHAR}, #{cmAttachment,jdbcType=VARCHAR}, #{cmModificationDate,jdbcType=VARCHAR}, 
+      #{cmModificationPerson,jdbcType=VARCHAR}, #{cmRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.Cmrpr">
+    insert into gzcrm_cmrpr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmKey != null">
+        CM_KEY,
+      </if>
+      <if test="cmId != null">
+        CM_ID,
+      </if>
+      <if test="cmTpye != null">
+        CM_TPYE,
+      </if>
+      <if test="cmSub != null">
+        CM_SUB,
+      </if>
+      <if test="cmDate != null">
+        CM_DATE,
+      </if>
+      <if test="cmAunit != null">
+        CM_AUNIT,
+      </if>
+      <if test="cmAperson != null">
+        CM_APERSON,
+      </if>
+      <if test="cmRdate != null">
+        CM_RDATE,
+      </if>
+      <if test="cmAreason != null">
+        CM_AREASON,
+      </if>
+      <if test="cmRemark != null">
+        CM_REMARK,
+      </if>
+      <if test="cmAttachment != null">
+        CM_ATTACHMENT,
+      </if>
+      <if test="cmModificationDate != null">
+        CM_MODIFICATION_DATE,
+      </if>
+      <if test="cmModificationPerson != null">
+        CM_MODIFICATION_PERSON,
+      </if>
+      <if test="cmRemarks != null">
+        CM_REMARKS,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmKey != null">
+        #{cmKey,jdbcType=INTEGER},
+      </if>
+      <if test="cmId != null">
+        #{cmId,jdbcType=CHAR},
+      </if>
+      <if test="cmTpye != null">
+        #{cmTpye,jdbcType=VARCHAR},
+      </if>
+      <if test="cmSub != null">
+        #{cmSub,jdbcType=VARCHAR},
+      </if>
+      <if test="cmDate != null">
+        #{cmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAunit != null">
+        #{cmAunit,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAperson != null">
+        #{cmAperson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRdate != null">
+        #{cmRdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAreason != null">
+        #{cmAreason,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemark != null">
+        #{cmRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAttachment != null">
+        #{cmAttachment,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationDate != null">
+        #{cmModificationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationPerson != null">
+        #{cmModificationPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemarks != null">
+        #{cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CmrprExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_cmrpr
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_cmrpr
+    <set>
+      <if test="record.cmKey != null">
+        CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmId != null">
+        CM_ID = #{record.cmId,jdbcType=CHAR},
+      </if>
+      <if test="record.cmTpye != null">
+        CM_TPYE = #{record.cmTpye,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmSub != null">
+        CM_SUB = #{record.cmSub,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmDate != null">
+        CM_DATE = #{record.cmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmAunit != null">
+        CM_AUNIT = #{record.cmAunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmAperson != null">
+        CM_APERSON = #{record.cmAperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmRdate != null">
+        CM_RDATE = #{record.cmRdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmAreason != null">
+        CM_AREASON = #{record.cmAreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmRemark != null">
+        CM_REMARK = #{record.cmRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmAttachment != null">
+        CM_ATTACHMENT = #{record.cmAttachment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmModificationDate != null">
+        CM_MODIFICATION_DATE = #{record.cmModificationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmModificationPerson != null">
+        CM_MODIFICATION_PERSON = #{record.cmModificationPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmRemarks != null">
+        CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_cmrpr
+    set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_TPYE = #{record.cmTpye,jdbcType=VARCHAR},
+      CM_SUB = #{record.cmSub,jdbcType=VARCHAR},
+      CM_DATE = #{record.cmDate,jdbcType=VARCHAR},
+      CM_AUNIT = #{record.cmAunit,jdbcType=VARCHAR},
+      CM_APERSON = #{record.cmAperson,jdbcType=VARCHAR},
+      CM_RDATE = #{record.cmRdate,jdbcType=VARCHAR},
+      CM_AREASON = #{record.cmAreason,jdbcType=VARCHAR},
+      CM_REMARK = #{record.cmRemark,jdbcType=VARCHAR},
+      CM_ATTACHMENT = #{record.cmAttachment,jdbcType=VARCHAR},
+      CM_MODIFICATION_DATE = #{record.cmModificationDate,jdbcType=VARCHAR},
+      CM_MODIFICATION_PERSON = #{record.cmModificationPerson,jdbcType=VARCHAR},
+      CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.Cmrpr">
+    update gzcrm_cmrpr
+    <set>
+      <if test="cmId != null">
+        CM_ID = #{cmId,jdbcType=CHAR},
+      </if>
+      <if test="cmTpye != null">
+        CM_TPYE = #{cmTpye,jdbcType=VARCHAR},
+      </if>
+      <if test="cmSub != null">
+        CM_SUB = #{cmSub,jdbcType=VARCHAR},
+      </if>
+      <if test="cmDate != null">
+        CM_DATE = #{cmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAunit != null">
+        CM_AUNIT = #{cmAunit,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAperson != null">
+        CM_APERSON = #{cmAperson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRdate != null">
+        CM_RDATE = #{cmRdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAreason != null">
+        CM_AREASON = #{cmAreason,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemark != null">
+        CM_REMARK = #{cmRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAttachment != null">
+        CM_ATTACHMENT = #{cmAttachment,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationDate != null">
+        CM_MODIFICATION_DATE = #{cmModificationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmModificationPerson != null">
+        CM_MODIFICATION_PERSON = #{cmModificationPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemarks != null">
+        CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Cmrpr">
+    update gzcrm_cmrpr
+    set CM_ID = #{cmId,jdbcType=CHAR},
+      CM_TPYE = #{cmTpye,jdbcType=VARCHAR},
+      CM_SUB = #{cmSub,jdbcType=VARCHAR},
+      CM_DATE = #{cmDate,jdbcType=VARCHAR},
+      CM_AUNIT = #{cmAunit,jdbcType=VARCHAR},
+      CM_APERSON = #{cmAperson,jdbcType=VARCHAR},
+      CM_RDATE = #{cmRdate,jdbcType=VARCHAR},
+      CM_AREASON = #{cmAreason,jdbcType=VARCHAR},
+      CM_REMARK = #{cmRemark,jdbcType=VARCHAR},
+      CM_ATTACHMENT = #{cmAttachment,jdbcType=VARCHAR},
+      CM_MODIFICATION_DATE = #{cmModificationDate,jdbcType=VARCHAR},
+      CM_MODIFICATION_PERSON = #{cmModificationPerson,jdbcType=VARCHAR},
+      CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR}
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+</mapper>

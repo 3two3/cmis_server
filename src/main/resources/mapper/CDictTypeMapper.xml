@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CDictTypeMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.CDictType">
+    <id column="dict_type_id" jdbcType="INTEGER" property="dictTypeId" />
+    <result column="dict_type_name" jdbcType="VARCHAR" property="dictTypeName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    dict_type_id, dict_type_name
+  </sql>
+  <select id="selectByExample" parameterType="com.inspur.bean.CDictTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_dict_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_dict_type
+    where dict_type_id = #{dictTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_dict_type
+    where dict_type_id = #{dictTypeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CDictTypeExample">
+    delete from gzcrm_dict_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.CDictType">
+    insert into gzcrm_dict_type (dict_type_id, dict_type_name)
+    values (#{dictTypeId,jdbcType=INTEGER}, #{dictTypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.CDictType">
+    insert into gzcrm_dict_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictTypeId != null">
+        dict_type_id,
+      </if>
+      <if test="dictTypeName != null">
+        dict_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictTypeId != null">
+        #{dictTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="dictTypeName != null">
+        #{dictTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CDictTypeExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_dict_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_dict_type
+    <set>
+      <if test="record.dictTypeId != null">
+        dict_type_id = #{record.dictTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictTypeName != null">
+        dict_type_name = #{record.dictTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_dict_type
+    set dict_type_id = #{record.dictTypeId,jdbcType=INTEGER},
+      dict_type_name = #{record.dictTypeName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CDictType">
+    update gzcrm_dict_type
+    <set>
+      <if test="dictTypeName != null">
+        dict_type_name = #{dictTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dict_type_id = #{dictTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CDictType">
+    update gzcrm_dict_type
+    set dict_type_name = #{dictTypeName,jdbcType=VARCHAR}
+    where dict_type_id = #{dictTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

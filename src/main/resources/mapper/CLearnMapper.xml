@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CLearnMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.CLearn">
+    <id column="L_KEY" jdbcType="INTEGER" property="lKey" />
+    <result column="L_NAME" jdbcType="VARCHAR" property="lName" />
+    <result column="L_TYPE" jdbcType="VARCHAR" property="lType" />
+    <result column="L_DES" jdbcType="VARCHAR" property="lDes" />
+    <result column="L_URL" jdbcType="VARCHAR" property="lUrl" />
+    <result column="L_LINE" jdbcType="VARCHAR" property="lLine" />
+    <result column="L_UPER" jdbcType="VARCHAR" property="lUper" />
+    <result column="L_UNIT" jdbcType="VARCHAR" property="lUnit" />
+    <result column="L_DATE" jdbcType="VARCHAR" property="lDate" />
+    <result column="L_REMARKS" jdbcType="VARCHAR" property="lRemarks" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    L_KEY, L_NAME, L_TYPE, L_DES, L_URL, L_LINE, L_UPER, L_UNIT, L_DATE, L_REMARKS, DEL_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.inspur.bean.CLearnExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_learn
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_learn
+    where L_KEY = #{lKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_learn
+    where L_KEY = #{lKey,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CLearnExample">
+    delete from gzcrm_learn
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.CLearn">
+    insert into gzcrm_learn (L_KEY, L_NAME, L_TYPE, 
+      L_DES, L_URL, L_LINE, 
+      L_UPER, L_UNIT, L_DATE, 
+      L_REMARKS, DEL_FLAG)
+    values (#{lKey,jdbcType=INTEGER}, #{lName,jdbcType=VARCHAR}, #{lType,jdbcType=VARCHAR}, 
+      #{lDes,jdbcType=VARCHAR}, #{lUrl,jdbcType=VARCHAR}, #{lLine,jdbcType=VARCHAR}, 
+      #{lUper,jdbcType=VARCHAR}, #{lUnit,jdbcType=VARCHAR}, #{lDate,jdbcType=VARCHAR}, 
+      #{lRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.CLearn">
+    insert into gzcrm_learn
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lKey != null">
+        L_KEY,
+      </if>
+      <if test="lName != null">
+        L_NAME,
+      </if>
+      <if test="lType != null">
+        L_TYPE,
+      </if>
+      <if test="lDes != null">
+        L_DES,
+      </if>
+      <if test="lUrl != null">
+        L_URL,
+      </if>
+      <if test="lLine != null">
+        L_LINE,
+      </if>
+      <if test="lUper != null">
+        L_UPER,
+      </if>
+      <if test="lUnit != null">
+        L_UNIT,
+      </if>
+      <if test="lDate != null">
+        L_DATE,
+      </if>
+      <if test="lRemarks != null">
+        L_REMARKS,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lKey != null">
+        #{lKey,jdbcType=INTEGER},
+      </if>
+      <if test="lName != null">
+        #{lName,jdbcType=VARCHAR},
+      </if>
+      <if test="lType != null">
+        #{lType,jdbcType=VARCHAR},
+      </if>
+      <if test="lDes != null">
+        #{lDes,jdbcType=VARCHAR},
+      </if>
+      <if test="lUrl != null">
+        #{lUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lLine != null">
+        #{lLine,jdbcType=VARCHAR},
+      </if>
+      <if test="lUper != null">
+        #{lUper,jdbcType=VARCHAR},
+      </if>
+      <if test="lUnit != null">
+        #{lUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="lDate != null">
+        #{lDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lRemarks != null">
+        #{lRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CLearnExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_learn
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_learn
+    <set>
+      <if test="record.lKey != null">
+        L_KEY = #{record.lKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.lName != null">
+        L_NAME = #{record.lName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lType != null">
+        L_TYPE = #{record.lType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lDes != null">
+        L_DES = #{record.lDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lUrl != null">
+        L_URL = #{record.lUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lLine != null">
+        L_LINE = #{record.lLine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lUper != null">
+        L_UPER = #{record.lUper,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lUnit != null">
+        L_UNIT = #{record.lUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lDate != null">
+        L_DATE = #{record.lDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lRemarks != null">
+        L_REMARKS = #{record.lRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_learn
+    set L_KEY = #{record.lKey,jdbcType=INTEGER},
+      L_NAME = #{record.lName,jdbcType=VARCHAR},
+      L_TYPE = #{record.lType,jdbcType=VARCHAR},
+      L_DES = #{record.lDes,jdbcType=VARCHAR},
+      L_URL = #{record.lUrl,jdbcType=VARCHAR},
+      L_LINE = #{record.lLine,jdbcType=VARCHAR},
+      L_UPER = #{record.lUper,jdbcType=VARCHAR},
+      L_UNIT = #{record.lUnit,jdbcType=VARCHAR},
+      L_DATE = #{record.lDate,jdbcType=VARCHAR},
+      L_REMARKS = #{record.lRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CLearn">
+    update gzcrm_learn
+    <set>
+      <if test="lName != null">
+        L_NAME = #{lName,jdbcType=VARCHAR},
+      </if>
+      <if test="lType != null">
+        L_TYPE = #{lType,jdbcType=VARCHAR},
+      </if>
+      <if test="lDes != null">
+        L_DES = #{lDes,jdbcType=VARCHAR},
+      </if>
+      <if test="lUrl != null">
+        L_URL = #{lUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lLine != null">
+        L_LINE = #{lLine,jdbcType=VARCHAR},
+      </if>
+      <if test="lUper != null">
+        L_UPER = #{lUper,jdbcType=VARCHAR},
+      </if>
+      <if test="lUnit != null">
+        L_UNIT = #{lUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="lDate != null">
+        L_DATE = #{lDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lRemarks != null">
+        L_REMARKS = #{lRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where L_KEY = #{lKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CLearn">
+    update gzcrm_learn
+    set L_NAME = #{lName,jdbcType=VARCHAR},
+      L_TYPE = #{lType,jdbcType=VARCHAR},
+      L_DES = #{lDes,jdbcType=VARCHAR},
+      L_URL = #{lUrl,jdbcType=VARCHAR},
+      L_LINE = #{lLine,jdbcType=VARCHAR},
+      L_UPER = #{lUper,jdbcType=VARCHAR},
+      L_UNIT = #{lUnit,jdbcType=VARCHAR},
+      L_DATE = #{lDate,jdbcType=VARCHAR},
+      L_REMARKS = #{lRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR}
+    where L_KEY = #{lKey,jdbcType=INTEGER}
+  </update>
+</mapper>

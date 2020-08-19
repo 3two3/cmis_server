@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CDictMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.CDict">
+    <id column="DICT_ID" jdbcType="INTEGER" property="dictId" />
+    <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
+    <result column="DICT_VALUE" jdbcType="INTEGER" property="dictValue" />
+    <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType" />
+    <result column="DICT_DESCRIPTION" jdbcType="VARCHAR" property="dictDescription" />
+    <result column="DICT_SORT" jdbcType="DECIMAL" property="dictSort" />
+    <result column="DICT_REMARKS" jdbcType="VARCHAR" property="dictRemarks" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DICT_ID, DICT_NAME, DICT_VALUE, DICT_TYPE, DICT_DESCRIPTION, DICT_SORT, DICT_REMARKS, 
+    DEL_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.inspur.bean.CDictExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_dict
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gzcrm_dict
+    where DICT_ID = #{dictId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_dict
+    where DICT_ID = #{dictId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CDictExample">
+    delete from gzcrm_dict
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.CDict">
+    insert into gzcrm_dict (DICT_ID, DICT_NAME, DICT_VALUE, 
+      DICT_TYPE, DICT_DESCRIPTION, DICT_SORT, 
+      DICT_REMARKS, DEL_FLAG)
+    values (#{dictId,jdbcType=INTEGER}, #{dictName,jdbcType=VARCHAR}, #{dictValue,jdbcType=INTEGER}, 
+      #{dictType,jdbcType=VARCHAR}, #{dictDescription,jdbcType=VARCHAR}, #{dictSort,jdbcType=DECIMAL}, 
+      #{dictRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.CDict">
+    insert into gzcrm_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        DICT_ID,
+      </if>
+      <if test="dictName != null">
+        DICT_NAME,
+      </if>
+      <if test="dictValue != null">
+        DICT_VALUE,
+      </if>
+      <if test="dictType != null">
+        DICT_TYPE,
+      </if>
+      <if test="dictDescription != null">
+        DICT_DESCRIPTION,
+      </if>
+      <if test="dictSort != null">
+        DICT_SORT,
+      </if>
+      <if test="dictRemarks != null">
+        DICT_REMARKS,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        #{dictValue,jdbcType=INTEGER},
+      </if>
+      <if test="dictType != null">
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictDescription != null">
+        #{dictDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dictSort != null">
+        #{dictSort,jdbcType=DECIMAL},
+      </if>
+      <if test="dictRemarks != null">
+        #{dictRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CDictExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_dict
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_dict
+    <set>
+      <if test="record.dictId != null">
+        DICT_ID = #{record.dictId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictName != null">
+        DICT_NAME = #{record.dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictValue != null">
+        DICT_VALUE = #{record.dictValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictType != null">
+        DICT_TYPE = #{record.dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictDescription != null">
+        DICT_DESCRIPTION = #{record.dictDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictSort != null">
+        DICT_SORT = #{record.dictSort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dictRemarks != null">
+        DICT_REMARKS = #{record.dictRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_dict
+    set DICT_ID = #{record.dictId,jdbcType=INTEGER},
+      DICT_NAME = #{record.dictName,jdbcType=VARCHAR},
+      DICT_VALUE = #{record.dictValue,jdbcType=INTEGER},
+      DICT_TYPE = #{record.dictType,jdbcType=VARCHAR},
+      DICT_DESCRIPTION = #{record.dictDescription,jdbcType=VARCHAR},
+      DICT_SORT = #{record.dictSort,jdbcType=DECIMAL},
+      DICT_REMARKS = #{record.dictRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CDict">
+    update gzcrm_dict
+    <set>
+      <if test="dictName != null">
+        DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        DICT_VALUE = #{dictValue,jdbcType=INTEGER},
+      </if>
+      <if test="dictType != null">
+        DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictDescription != null">
+        DICT_DESCRIPTION = #{dictDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dictSort != null">
+        DICT_SORT = #{dictSort,jdbcType=DECIMAL},
+      </if>
+      <if test="dictRemarks != null">
+        DICT_REMARKS = #{dictRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where DICT_ID = #{dictId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CDict">
+    update gzcrm_dict
+    set DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      DICT_VALUE = #{dictValue,jdbcType=INTEGER},
+      DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      DICT_DESCRIPTION = #{dictDescription,jdbcType=VARCHAR},
+      DICT_SORT = #{dictSort,jdbcType=DECIMAL},
+      DICT_REMARKS = #{dictRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR}
+    where DICT_ID = #{dictId,jdbcType=INTEGER}
+  </update>
+</mapper>

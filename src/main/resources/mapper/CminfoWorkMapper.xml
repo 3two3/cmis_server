@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.CminfoWorkMapper">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.CminfoWork">
+    <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
+    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_MANAGEMENT" jdbcType="VARCHAR" property="cmManagement" />
+    <result column="CM_PRODUCT" jdbcType="VARCHAR" property="cmProduct" />
+    <result column="CM_LOAN" jdbcType="VARCHAR" property="cmLoan" />
+    <result column="CM_WARNING" jdbcType="VARCHAR" property="cmWarning" />
+    <result column="CM_ISSUE" jdbcType="VARCHAR" property="cmIssue" />
+    <result column="CM_DATE" jdbcType="VARCHAR" property="cmDate" />
+    <result column="CM_REMARKS" jdbcType="VARCHAR" property="cmRemarks" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.inspur.bean.CminfoWork">
+    <result column="CM_WORK_PROPOSAL" jdbcType="LONGVARCHAR" property="cmWorkProposal" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CM_KEY, CM_ID, CM_MANAGEMENT, CM_PRODUCT, CM_LOAN, CM_WARNING, CM_ISSUE, CM_DATE, 
+    CM_REMARKS, DEL_FLAG
+  </sql>
+  <sql id="Blob_Column_List">
+    CM_WORK_PROPOSAL
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.inspur.bean.CminfoWorkExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gzcrm_cminfo_work
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.inspur.bean.CminfoWorkExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gzcrm_cminfo_work
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gzcrm_cminfo_work
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gzcrm_cminfo_work
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.inspur.bean.CminfoWorkExample">
+    delete from gzcrm_cminfo_work
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.inspur.bean.CminfoWork">
+    insert into gzcrm_cminfo_work (CM_KEY, CM_ID, CM_MANAGEMENT, 
+      CM_PRODUCT, CM_LOAN, CM_WARNING, 
+      CM_ISSUE, CM_DATE, CM_REMARKS, 
+      DEL_FLAG, CM_WORK_PROPOSAL)
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmManagement,jdbcType=VARCHAR}, 
+      #{cmProduct,jdbcType=VARCHAR}, #{cmLoan,jdbcType=VARCHAR}, #{cmWarning,jdbcType=VARCHAR}, 
+      #{cmIssue,jdbcType=VARCHAR}, #{cmDate,jdbcType=VARCHAR}, #{cmRemarks,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{cmWorkProposal,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspur.bean.CminfoWork">
+    insert into gzcrm_cminfo_work
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmKey != null">
+        CM_KEY,
+      </if>
+      <if test="cmId != null">
+        CM_ID,
+      </if>
+      <if test="cmManagement != null">
+        CM_MANAGEMENT,
+      </if>
+      <if test="cmProduct != null">
+        CM_PRODUCT,
+      </if>
+      <if test="cmLoan != null">
+        CM_LOAN,
+      </if>
+      <if test="cmWarning != null">
+        CM_WARNING,
+      </if>
+      <if test="cmIssue != null">
+        CM_ISSUE,
+      </if>
+      <if test="cmDate != null">
+        CM_DATE,
+      </if>
+      <if test="cmRemarks != null">
+        CM_REMARKS,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="cmWorkProposal != null">
+        CM_WORK_PROPOSAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmKey != null">
+        #{cmKey,jdbcType=INTEGER},
+      </if>
+      <if test="cmId != null">
+        #{cmId,jdbcType=CHAR},
+      </if>
+      <if test="cmManagement != null">
+        #{cmManagement,jdbcType=VARCHAR},
+      </if>
+      <if test="cmProduct != null">
+        #{cmProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="cmLoan != null">
+        #{cmLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="cmWarning != null">
+        #{cmWarning,jdbcType=VARCHAR},
+      </if>
+      <if test="cmIssue != null">
+        #{cmIssue,jdbcType=VARCHAR},
+      </if>
+      <if test="cmDate != null">
+        #{cmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemarks != null">
+        #{cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="cmWorkProposal != null">
+        #{cmWorkProposal,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.inspur.bean.CminfoWorkExample" resultType="java.lang.Long">
+    select count(*) from gzcrm_cminfo_work
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gzcrm_cminfo_work
+    <set>
+      <if test="record.cmKey != null">
+        CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmId != null">
+        CM_ID = #{record.cmId,jdbcType=CHAR},
+      </if>
+      <if test="record.cmManagement != null">
+        CM_MANAGEMENT = #{record.cmManagement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmProduct != null">
+        CM_PRODUCT = #{record.cmProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmLoan != null">
+        CM_LOAN = #{record.cmLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmWarning != null">
+        CM_WARNING = #{record.cmWarning,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmIssue != null">
+        CM_ISSUE = #{record.cmIssue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmDate != null">
+        CM_DATE = #{record.cmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmRemarks != null">
+        CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.cmWorkProposal != null">
+        CM_WORK_PROPOSAL = #{record.cmWorkProposal,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update gzcrm_cminfo_work
+    set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_MANAGEMENT = #{record.cmManagement,jdbcType=VARCHAR},
+      CM_PRODUCT = #{record.cmProduct,jdbcType=VARCHAR},
+      CM_LOAN = #{record.cmLoan,jdbcType=VARCHAR},
+      CM_WARNING = #{record.cmWarning,jdbcType=VARCHAR},
+      CM_ISSUE = #{record.cmIssue,jdbcType=VARCHAR},
+      CM_DATE = #{record.cmDate,jdbcType=VARCHAR},
+      CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+      CM_WORK_PROPOSAL = #{record.cmWorkProposal,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gzcrm_cminfo_work
+    set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
+      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_MANAGEMENT = #{record.cmManagement,jdbcType=VARCHAR},
+      CM_PRODUCT = #{record.cmProduct,jdbcType=VARCHAR},
+      CM_LOAN = #{record.cmLoan,jdbcType=VARCHAR},
+      CM_WARNING = #{record.cmWarning,jdbcType=VARCHAR},
+      CM_ISSUE = #{record.cmIssue,jdbcType=VARCHAR},
+      CM_DATE = #{record.cmDate,jdbcType=VARCHAR},
+      CM_REMARKS = #{record.cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CminfoWork">
+    update gzcrm_cminfo_work
+    <set>
+      <if test="cmId != null">
+        CM_ID = #{cmId,jdbcType=CHAR},
+      </if>
+      <if test="cmManagement != null">
+        CM_MANAGEMENT = #{cmManagement,jdbcType=VARCHAR},
+      </if>
+      <if test="cmProduct != null">
+        CM_PRODUCT = #{cmProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="cmLoan != null">
+        CM_LOAN = #{cmLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="cmWarning != null">
+        CM_WARNING = #{cmWarning,jdbcType=VARCHAR},
+      </if>
+      <if test="cmIssue != null">
+        CM_ISSUE = #{cmIssue,jdbcType=VARCHAR},
+      </if>
+      <if test="cmDate != null">
+        CM_DATE = #{cmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmRemarks != null">
+        CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="cmWorkProposal != null">
+        CM_WORK_PROPOSAL = #{cmWorkProposal,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.inspur.bean.CminfoWork">
+    update gzcrm_cminfo_work
+    set CM_ID = #{cmId,jdbcType=CHAR},
+      CM_MANAGEMENT = #{cmManagement,jdbcType=VARCHAR},
+      CM_PRODUCT = #{cmProduct,jdbcType=VARCHAR},
+      CM_LOAN = #{cmLoan,jdbcType=VARCHAR},
+      CM_WARNING = #{cmWarning,jdbcType=VARCHAR},
+      CM_ISSUE = #{cmIssue,jdbcType=VARCHAR},
+      CM_DATE = #{cmDate,jdbcType=VARCHAR},
+      CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      CM_WORK_PROPOSAL = #{cmWorkProposal,jdbcType=LONGVARCHAR}
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CminfoWork">
+    update gzcrm_cminfo_work
+    set CM_ID = #{cmId,jdbcType=CHAR},
+      CM_MANAGEMENT = #{cmManagement,jdbcType=VARCHAR},
+      CM_PRODUCT = #{cmProduct,jdbcType=VARCHAR},
+      CM_LOAN = #{cmLoan,jdbcType=VARCHAR},
+      CM_WARNING = #{cmWarning,jdbcType=VARCHAR},
+      CM_ISSUE = #{cmIssue,jdbcType=VARCHAR},
+      CM_DATE = #{cmDate,jdbcType=VARCHAR},
+      CM_REMARKS = #{cmRemarks,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR}
+    where CM_KEY = #{cmKey,jdbcType=INTEGER}
+  </update>
+</mapper>
