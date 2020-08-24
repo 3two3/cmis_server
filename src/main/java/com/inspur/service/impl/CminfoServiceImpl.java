@@ -66,4 +66,32 @@ public class CminfoServiceImpl implements CminfoService {
     public Cminfo getCminfoById(Integer id) {
         return cminfoMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Cminfo> reportList(String cmUnit, String cmStatus, String cmSex, String cmEducation, String cmProfessionalTitles, String cmLevel) {
+        CminfoExample CminfoExample = new CminfoExample();
+        CminfoExample.Criteria criteria = CminfoExample.createCriteria();
+        if ("".equals(cmUnit) && "".equals(cmStatus) && "".equals(cmSex) && "".equals(cmEducation) && "".equals(cmProfessionalTitles) && "".equals(cmLevel)) {
+            return cminfoMapper.selectByExample(null);
+        }
+        if (!"".equals(cmUnit)) {
+            criteria.andCmUnitEqualTo(cmUnit);
+        }
+        if (!"".equals(cmStatus)) {
+            criteria.andCmStatusEqualTo(cmStatus);
+        }
+        if (!"".equals(cmSex)) {
+            criteria.andCmSexEqualTo(cmSex);
+        }
+        if (!"".equals(cmEducation)) {
+            criteria.andCmEducationEqualTo(cmEducation);
+        }
+        if (!"".equals(cmProfessionalTitles)) {
+            criteria.andCmProfessionalTitlesEqualTo(cmProfessionalTitles);
+        }
+        if (!"".equals(cmLevel)) {
+            criteria.andCmLevelEqualTo(cmLevel);
+        }
+        return cminfoMapper.selectByExample(CminfoExample);
+    }
 }

@@ -524,62 +524,62 @@ public class CLearnExample {
             return (Criteria) this;
         }
 
-        public Criteria andLUperEqualTo(String value) {
+        public Criteria andLUperEqualTo(Integer value) {
             addCriterion("L_UPER =", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperNotEqualTo(String value) {
+        public Criteria andLUperNotEqualTo(Integer value) {
             addCriterion("L_UPER <>", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperGreaterThan(String value) {
+        public Criteria andLUperGreaterThan(Integer value) {
             addCriterion("L_UPER >", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperGreaterThanOrEqualTo(String value) {
+        public Criteria andLUperGreaterThanOrEqualTo(Integer value) {
             addCriterion("L_UPER >=", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperLessThan(String value) {
+        public Criteria andLUperLessThan(Integer value) {
             addCriterion("L_UPER <", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperLessThanOrEqualTo(String value) {
+        public Criteria andLUperLessThanOrEqualTo(Integer value) {
             addCriterion("L_UPER <=", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperLike(String value) {
+        public Criteria andLUperLike(Integer value) {
             addCriterion("L_UPER like", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperNotLike(String value) {
+        public Criteria andLUperNotLike(Integer value) {
             addCriterion("L_UPER not like", value, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperIn(List<String> values) {
+        public Criteria andLUperIn(List<Integer> values) {
             addCriterion("L_UPER in", values, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperNotIn(List<String> values) {
+        public Criteria andLUperNotIn(List<Integer> values) {
             addCriterion("L_UPER not in", values, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperBetween(String value1, String value2) {
+        public Criteria andLUperBetween(Integer value1, Integer value2) {
             addCriterion("L_UPER between", value1, value2, "lUper");
             return (Criteria) this;
         }
 
-        public Criteria andLUperNotBetween(String value1, String value2) {
+        public Criteria andLUperNotBetween(Integer value1, Integer value2) {
             addCriterion("L_UPER not between", value1, value2, "lUper");
             return (Criteria) this;
         }

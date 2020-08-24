@@ -3,7 +3,6 @@ package com.inspur.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.inspur.bean.Cinfo;
-import com.inspur.bean.Cminfo;
 import com.inspur.service.CinfoService;
 import com.inspur.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +80,7 @@ public class CinfoController {
     @ResponseBody
     @PostMapping("/updateCinfo")
     public Result updateCinfo(@RequestBody Cinfo cinfo) {
-        int num = cinfoService.update(cinfo );
+        int num = cinfoService.update(cinfo);
         if (num != 0) {
             return Result.success();
         } else {

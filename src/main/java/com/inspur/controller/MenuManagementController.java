@@ -1,7 +1,5 @@
 package com.inspur.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.inspur.bean.MenuManagement;
 import com.inspur.bean.MenuParent;
 import com.inspur.service.MenuManagementService;

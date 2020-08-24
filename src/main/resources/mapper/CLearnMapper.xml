@@ -8,7 +8,7 @@
     <result column="L_DES" jdbcType="VARCHAR" property="lDes" />
     <result column="L_URL" jdbcType="VARCHAR" property="lUrl" />
     <result column="L_LINE" jdbcType="VARCHAR" property="lLine" />
-    <result column="L_UPER" jdbcType="VARCHAR" property="lUper" />
+    <result column="L_UPER" jdbcType="INTEGER" property="lUper" />
     <result column="L_UNIT" jdbcType="VARCHAR" property="lUnit" />
     <result column="L_DATE" jdbcType="VARCHAR" property="lDate" />
     <result column="L_REMARKS" jdbcType="VARCHAR" property="lRemarks" />
@@ -112,7 +112,7 @@
       L_REMARKS, DEL_FLAG)
     values (#{lKey,jdbcType=INTEGER}, #{lName,jdbcType=VARCHAR}, #{lType,jdbcType=VARCHAR}, 
       #{lDes,jdbcType=VARCHAR}, #{lUrl,jdbcType=VARCHAR}, #{lLine,jdbcType=VARCHAR}, 
-      #{lUper,jdbcType=VARCHAR}, #{lUnit,jdbcType=VARCHAR}, #{lDate,jdbcType=VARCHAR}, 
+      #{lUper,jdbcType=INTEGER}, #{lUnit,jdbcType=VARCHAR}, #{lDate,jdbcType=VARCHAR},
       #{lRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.inspur.bean.CLearn">
@@ -172,7 +172,7 @@
         #{lLine,jdbcType=VARCHAR},
       </if>
       <if test="lUper != null">
-        #{lUper,jdbcType=VARCHAR},
+        #{lUper,jdbcType=INTEGER},
       </if>
       <if test="lUnit != null">
         #{lUnit,jdbcType=VARCHAR},
@@ -216,7 +216,7 @@
         L_LINE = #{record.lLine,jdbcType=VARCHAR},
       </if>
       <if test="record.lUper != null">
-        L_UPER = #{record.lUper,jdbcType=VARCHAR},
+        L_UPER = #{record.lUper,jdbcType=INTEGER},
       </if>
       <if test="record.lUnit != null">
         L_UNIT = #{record.lUnit,jdbcType=VARCHAR},
@@ -243,7 +243,7 @@
       L_DES = #{record.lDes,jdbcType=VARCHAR},
       L_URL = #{record.lUrl,jdbcType=VARCHAR},
       L_LINE = #{record.lLine,jdbcType=VARCHAR},
-      L_UPER = #{record.lUper,jdbcType=VARCHAR},
+      L_UPER = #{record.lUper,jdbcType=INTEGER},
       L_UNIT = #{record.lUnit,jdbcType=VARCHAR},
       L_DATE = #{record.lDate,jdbcType=VARCHAR},
       L_REMARKS = #{record.lRemarks,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
         L_LINE = #{lLine,jdbcType=VARCHAR},
       </if>
       <if test="lUper != null">
-        L_UPER = #{lUper,jdbcType=VARCHAR},
+        L_UPER = #{lUper,jdbcType=INTEGER},
       </if>
       <if test="lUnit != null">
         L_UNIT = #{lUnit,jdbcType=VARCHAR},
@@ -295,7 +295,7 @@
       L_DES = #{lDes,jdbcType=VARCHAR},
       L_URL = #{lUrl,jdbcType=VARCHAR},
       L_LINE = #{lLine,jdbcType=VARCHAR},
-      L_UPER = #{lUper,jdbcType=VARCHAR},
+      L_UPER = #{lUper,jdbcType=INTEGER},
       L_UNIT = #{lUnit,jdbcType=VARCHAR},
       L_DATE = #{lDate,jdbcType=VARCHAR},
       L_REMARKS = #{lRemarks,jdbcType=VARCHAR},

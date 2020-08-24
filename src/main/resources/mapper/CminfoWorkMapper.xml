@@ -3,7 +3,7 @@
 <mapper namespace="com.inspur.dao.CminfoWorkMapper">
   <resultMap id="BaseResultMap" type="com.inspur.bean.CminfoWork">
     <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
-    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_ID" jdbcType="INTEGER" property="cmId" />
     <result column="CM_MANAGEMENT" jdbcType="VARCHAR" property="cmManagement" />
     <result column="CM_PRODUCT" jdbcType="VARCHAR" property="cmProduct" />
     <result column="CM_LOAN" jdbcType="VARCHAR" property="cmLoan" />
@@ -134,7 +134,7 @@
       CM_PRODUCT, CM_LOAN, CM_WARNING, 
       CM_ISSUE, CM_DATE, CM_REMARKS, 
       DEL_FLAG, CM_WORK_PROPOSAL)
-    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmManagement,jdbcType=VARCHAR}, 
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=INTEGER}, #{cmManagement,jdbcType=VARCHAR},
       #{cmProduct,jdbcType=VARCHAR}, #{cmLoan,jdbcType=VARCHAR}, #{cmWarning,jdbcType=VARCHAR}, 
       #{cmIssue,jdbcType=VARCHAR}, #{cmDate,jdbcType=VARCHAR}, #{cmRemarks,jdbcType=VARCHAR}, 
       #{delFlag,jdbcType=CHAR}, #{cmWorkProposal,jdbcType=LONGVARCHAR})
@@ -181,7 +181,7 @@
         #{cmKey,jdbcType=INTEGER},
       </if>
       <if test="cmId != null">
-        #{cmId,jdbcType=CHAR},
+        #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmManagement != null">
         #{cmManagement,jdbcType=VARCHAR},
@@ -225,7 +225,7 @@
         CM_KEY = #{record.cmKey,jdbcType=INTEGER},
       </if>
       <if test="record.cmId != null">
-        CM_ID = #{record.cmId,jdbcType=CHAR},
+        CM_ID = #{record.cmId,jdbcType=INTEGER},
       </if>
       <if test="record.cmManagement != null">
         CM_MANAGEMENT = #{record.cmManagement,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update gzcrm_cminfo_work
     set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
-      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_ID = #{record.cmId,jdbcType=INTEGER},
       CM_MANAGEMENT = #{record.cmManagement,jdbcType=VARCHAR},
       CM_PRODUCT = #{record.cmProduct,jdbcType=VARCHAR},
       CM_LOAN = #{record.cmLoan,jdbcType=VARCHAR},
@@ -279,7 +279,7 @@
   <update id="updateByExample" parameterType="map">
     update gzcrm_cminfo_work
     set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
-      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_ID = #{record.cmId,jdbcType=INTEGER},
       CM_MANAGEMENT = #{record.cmManagement,jdbcType=VARCHAR},
       CM_PRODUCT = #{record.cmProduct,jdbcType=VARCHAR},
       CM_LOAN = #{record.cmLoan,jdbcType=VARCHAR},
@@ -296,7 +296,7 @@
     update gzcrm_cminfo_work
     <set>
       <if test="cmId != null">
-        CM_ID = #{cmId,jdbcType=CHAR},
+        CM_ID = #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmManagement != null">
         CM_MANAGEMENT = #{cmManagement,jdbcType=VARCHAR},
@@ -330,7 +330,7 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.inspur.bean.CminfoWork">
     update gzcrm_cminfo_work
-    set CM_ID = #{cmId,jdbcType=CHAR},
+    set CM_ID = #{cmId,jdbcType=INTEGER},
       CM_MANAGEMENT = #{cmManagement,jdbcType=VARCHAR},
       CM_PRODUCT = #{cmProduct,jdbcType=VARCHAR},
       CM_LOAN = #{cmLoan,jdbcType=VARCHAR},
@@ -344,7 +344,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CminfoWork">
     update gzcrm_cminfo_work
-    set CM_ID = #{cmId,jdbcType=CHAR},
+    set CM_ID = #{cmId,jdbcType=INTEGER},
       CM_MANAGEMENT = #{cmManagement,jdbcType=VARCHAR},
       CM_PRODUCT = #{cmProduct,jdbcType=VARCHAR},
       CM_LOAN = #{cmLoan,jdbcType=VARCHAR},

@@ -13,7 +13,7 @@ public class CLearn {
 
     private String lLine;
 
-    private String lUper;
+    private Integer lUper;
 
     private String lUnit;
 
@@ -71,12 +71,12 @@ public class CLearn {
         this.lLine = lLine == null ? null : lLine.trim();
     }
 
-    public String getlUper() {
+    public Integer getlUper() {
         return lUper;
     }
 
-    public void setlUper(String lUper) {
-        this.lUper = lUper == null ? null : lUper.trim();
+    public void setlUper(Integer lUper) {
+        this.lUper = lUper;
     }
 
     public String getlUnit() {

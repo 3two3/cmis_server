@@ -2,10 +2,10 @@ package com.inspur.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.inspur.bean.Cinfo;
-import com.inspur.bean.CmarketingRecord;
-import com.inspur.service.CinfoService;
-import com.inspur.service.CmarketingRecordService;
+import com.inspur.bean.Cminfo;
+import com.inspur.bean.Cmregular;
+import com.inspur.service.CmRegularService;
+import com.inspur.service.CminfoService;
 import com.inspur.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,42 +19,44 @@ import java.util.List;
 
 @CrossOrigin
 @Controller
-@RequestMapping("markRecord")
-public class CmarketingRecordController {
+@RequestMapping("regular")
+public class CmRegularController {
+
     @Autowired
-    CmarketingRecordService cmarketingRecordService;
+    CmRegularService cmRegularService;
+
     @Autowired
-    CinfoService cinfoService;
+    CminfoService cminfoService;
 
     @ResponseBody
     @GetMapping("/list")
-    public Result getCmarketingRecords(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                       @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                       @RequestParam(value = "cCmId", defaultValue = "") String cCmId,
-                                       @RequestParam(value = "cName", defaultValue = "") String cName,
-                                       HttpServletRequest request) {
+    public Result getCmRegulars(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                @RequestParam(value = "cmId", defaultValue = "") String cmId,
+                                @RequestParam(value = "cmRegularDate", defaultValue = "") String cmRegularDate,
+                                @RequestParam(value = "cmRegularTheme", defaultValue = "") String cmRegularTheme) {
         //引入PageHelper分页插件
         //在查询之前只需要调用,传入页码，以及每页的大小
         PageHelper.startPage(pageNum, pageSize);
-        List<CmarketingRecord> cmarketingRecords = cmarketingRecordService.list(cCmId, cName);
-        Object cmId = request.getSession().getAttribute("cmId");
-        List<Cinfo> cinfos = cinfoService.list(cmId + "", "", "");
+        //获取客户经理信息，可多条件查询
+        List<Cmregular> cmregulars = cmRegularService.list(cmId, cmRegularDate, cmRegularTheme);
+        List<Cminfo> cminfos = cminfoService.list("", "", "", "");
         //使用pageInfo包装查询后的结果,只需要将pageInfo交给页面就行了
         //封装了详细的分页信息，包括我们查询出来的所有数据,传入连续显示的页数
-        PageInfo pageInfo = new PageInfo(cmarketingRecords, 5);
-        if (cmarketingRecords != null) {//查询成功
-            return Result.success().add("pageInfo", pageInfo).add("cinfos", cinfos);
+        PageInfo pageInfo = new PageInfo(cmregulars, 5);
+        if (cmregulars != null) {//查询成功
+            return Result.success().add("pageInfo", pageInfo).add("cminfos", cminfos);
         } else {//查询失败
             return Result.fail();
         }
     }
 
     @ResponseBody
-    @PostMapping("/addMarkRecord")
-    public Result addMarkRecord(@RequestBody CmarketingRecord cmarketingRecord, HttpServletRequest request) {
+    @PostMapping("/addCmregular")
+    public Result addCmregular(@RequestBody Cmregular cmregular, HttpServletRequest request) {
         Object cmId = request.getSession().getAttribute("cmId");
-        cmarketingRecord.setcCmId((Integer) cmId);
-        int num = cmarketingRecordService.add(cmarketingRecord);
+        cmregular.setCmId((Integer) cmId);
+        int num = cmRegularService.add(cmregular);
         if (num != 0) {
             return Result.success();
         }
@@ -63,19 +65,19 @@ public class CmarketingRecordController {
 
     @ResponseBody
     @GetMapping("/get/{id}")
-    public Result getMarkRecordById(@PathVariable("id") Integer id) {
-        CmarketingRecord cmarketingRecord = cmarketingRecordService.getMarkRecordById(id);
-        if (cmarketingRecord != null) {
-            return Result.success().add("cmarketingRecord", cmarketingRecord);
+    public Result getCmregularById(@PathVariable("id") Integer id) {
+        Cmregular cmregular = cmRegularService.getCmregularById(id);
+        if (cmregular != null) {
+            return Result.success().add("cmregular", cmregular);
         } else {
             return Result.fail();
         }
     }
 
     @ResponseBody
-    @PostMapping("/updateMarkRecord")
-    public Result updateMarkRecord(@RequestBody CmarketingRecord cmarketingRecord) {
-        int num = cmarketingRecordService.update(cmarketingRecord);
+    @DeleteMapping("/delCmregular/{id}")
+    public Result delCmregularById(@PathVariable("id") Integer id) {
+        int num = cmRegularService.deleteById(id);
         if (num != 0) {
             return Result.success();
         } else {
@@ -84,9 +86,9 @@ public class CmarketingRecordController {
     }
 
     @ResponseBody
-    @DeleteMapping("/delMarkRecord/{id}")
-    public Result delMarkRecord(@PathVariable("id") Integer id) {
-        int num = cmarketingRecordService.deleteById(id);
+    @PostMapping("/updateCmregular")
+    public Result updateCmregular(@RequestBody Cmregular cmregular) {
+        int num = cmRegularService.update(cmregular);
         if (num != 0) {
             return Result.success();
         } else {
@@ -95,13 +97,13 @@ public class CmarketingRecordController {
     }
 
     @ResponseBody
-    @DeleteMapping("/delMarkRecords/{ids}")
-    public Result delMarkRecords(@PathVariable("ids") Integer[] ids) {
+    @DeleteMapping("/delCmregulars/{ids}")
+    public Result delCmregulars(@PathVariable("ids") Integer[] ids) {
         List<Integer> delIds = new ArrayList<>(ids.length);
         for (Integer i : ids) {
             delIds.add(i);
         }
-        int num = cmarketingRecordService.delMarkRecords(delIds);
+        int num = cmRegularService.delCmregulars(delIds);
         if (num != 0) {
             return Result.success();
         } else {
@@ -111,15 +113,14 @@ public class CmarketingRecordController {
 
     @ResponseBody
     @PostMapping(value = "/upload")
-    public Result uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("cid") String cid, HttpServletRequest request) {
-        System.out.println("接收到的文件数据为：" + file);
+    public Result uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         if (file.isEmpty()) {
             return Result.success().setMsg("上传文件为空");
         }
         String fileName = file.getOriginalFilename();
         // 文件上传路径
         Object cmId = request.getSession().getAttribute("cmId");
-        String templatePath = "D:/WebStorm/workspace/cmis_ui/public/static/markRecord/" + cmId + "/" + cid;
+        String templatePath = "D:/WebStorm/workspace/cmis_ui/public/static/cmRegular/" + cmId;
         System.out.println("文件路径:" + templatePath);
         // 获取文件的后缀名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
@@ -147,4 +148,3 @@ public class CmarketingRecordController {
         }
     }
 }
-

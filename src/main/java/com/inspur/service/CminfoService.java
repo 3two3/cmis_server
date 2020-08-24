@@ -16,4 +16,6 @@ public interface CminfoService {
     Integer delCminfos(List<Integer> ids);
 
     Cminfo getCminfoById(Integer id);
+
+    List<Cminfo> reportList(String cmUnit, String cmStatus, String cmSex, String cmEducation, String cmProfessionalTitles, String cmLevel);
 }

@@ -174,62 +174,62 @@ public class CminfoWorkExample {
             return (Criteria) this;
         }
 
-        public Criteria andCmIdEqualTo(String value) {
+        public Criteria andCmIdEqualTo(Integer value) {
             addCriterion("CM_ID =", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdNotEqualTo(String value) {
+        public Criteria andCmIdNotEqualTo(Integer value) {
             addCriterion("CM_ID <>", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdGreaterThan(String value) {
+        public Criteria andCmIdGreaterThan(Integer value) {
             addCriterion("CM_ID >", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdGreaterThanOrEqualTo(String value) {
+        public Criteria andCmIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("CM_ID >=", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdLessThan(String value) {
+        public Criteria andCmIdLessThan(Integer value) {
             addCriterion("CM_ID <", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdLessThanOrEqualTo(String value) {
+        public Criteria andCmIdLessThanOrEqualTo(Integer value) {
             addCriterion("CM_ID <=", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdLike(String value) {
+        public Criteria andCmIdLike(Integer value) {
             addCriterion("CM_ID like", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdNotLike(String value) {
+        public Criteria andCmIdNotLike(Integer value) {
             addCriterion("CM_ID not like", value, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdIn(List<String> values) {
+        public Criteria andCmIdIn(List<Integer> values) {
             addCriterion("CM_ID in", values, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdNotIn(List<String> values) {
+        public Criteria andCmIdNotIn(List<Integer> values) {
             addCriterion("CM_ID not in", values, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdBetween(String value1, String value2) {
+        public Criteria andCmIdBetween(Integer value1, Integer value2) {
             addCriterion("CM_ID between", value1, value2, "cmId");
             return (Criteria) this;
         }
 
-        public Criteria andCmIdNotBetween(String value1, String value2) {
+        public Criteria andCmIdNotBetween(Integer value1, Integer value2) {
             addCriterion("CM_ID not between", value1, value2, "cmId");
             return (Criteria) this;
         }

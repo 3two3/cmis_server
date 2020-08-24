@@ -25,12 +25,12 @@ public class CminfoController {
 
     @ResponseBody
     @GetMapping("/list")
-    public Result getDicts(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                           @RequestParam(value = "cmUnit", defaultValue = "") String cmUnit,
-                           @RequestParam(value = "cmId", defaultValue = "") String cmId,
-                           @RequestParam(value = "cmName", defaultValue = "") String cmName,
-                           @RequestParam(value = "cmStatus", defaultValue = "") String cmStatus) {
+    public Result getCminfos(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                             @RequestParam(value = "cmUnit", defaultValue = "") String cmUnit,
+                             @RequestParam(value = "cmId", defaultValue = "") String cmId,
+                             @RequestParam(value = "cmName", defaultValue = "") String cmName,
+                             @RequestParam(value = "cmStatus", defaultValue = "") String cmStatus) {
         //引入PageHelper分页插件
         //在查询之前只需要调用,传入页码，以及每页的大小
         PageHelper.startPage(pageNum, pageSize);
@@ -58,6 +58,35 @@ public class CminfoController {
                     .add("grade", grade)
                     .add("branchDept", branchDept)
                     .add("outlets", outlets);
+        } else {//查询失败
+            return Result.fail();
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/reportList")
+    public Result getReportCminfos(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                   @RequestParam(value = "cmUnit", defaultValue = "") String cmUnit,
+                                   @RequestParam(value = "cmStatus", defaultValue = "") String cmStatus,
+                                   @RequestParam(value = "cmSex", defaultValue = "") String cmSex,
+                                   @RequestParam(value = "cmEducation", defaultValue = "") String cmEducation,
+                                   @RequestParam(value = "cmProfessionalTitles", defaultValue = "") String cmProfessionalTitles,
+                                   @RequestParam(value = "cmLevel", defaultValue = "") String cmLevel) {
+        //引入PageHelper分页插件
+        //在查询之前只需要调用,传入页码，以及每页的大小
+        PageHelper.startPage(pageNum, pageSize);
+        //获取客户经理信息，可多条件查询
+        List<Cminfo> cminfos = cminfoService.reportList(cmUnit, cmStatus, cmSex, cmEducation, cmProfessionalTitles, cmLevel);
+        //使用pageInfo包装查询后的结果,只需要将pageInfo交给页面就行了
+        //封装了详细的分页信息，包括我们查询出来的所有数据,传入连续显示的页数
+        PageInfo pageInfo = new PageInfo(cminfos, 5);
+        if (cminfos != null) {//查询成功
+            List<Dict> education = dictService.queryByTypeName("学历");
+            List<Dict> grade = dictService.queryByTypeName("客户经理等级");
+            return Result.success().add("pageInfo", pageInfo)
+                    .add("cmEducation_arr", education)
+                    .add("cmLevel_arr", grade);
         } else {//查询失败
             return Result.fail();
         }
@@ -98,7 +127,7 @@ public class CminfoController {
     @ResponseBody
     @PostMapping("/updateCminfo")
     public Result updateCminfo(@RequestBody Cminfo cminfo) {
-        int num = cminfoService.update(cminfo );
+        int num = cminfoService.update(cminfo);
         if (num != 0) {
             return Result.success();
         } else {
