@@ -1,30 +1,30 @@
 package com.inspur.dao;
 
-import com.inspur.bean.CMenuParent;
-import com.inspur.bean.CMenuParentExample;
+import com.inspur.bean.MenuParent;
+import com.inspur.bean.MenuParentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CMenuParentMapper {
-    long countByExample(CMenuParentExample example);
+    long countByExample(MenuParentExample example);
 
-    int deleteByExample(CMenuParentExample example);
+    int deleteByExample(MenuParentExample example);
 
     int deleteByPrimaryKey(Integer menuId);
 
-    int insert(CMenuParent record);
+    int insert(MenuParent record);
 
-    int insertSelective(CMenuParent record);
+    int insertSelective(MenuParent record);
 
-    List<CMenuParent> selectByExample(CMenuParentExample example);
+    List<MenuParent> selectByExample(MenuParentExample example);
 
-    CMenuParent selectByPrimaryKey(Integer menuId);
+    MenuParent selectByPrimaryKey(Integer menuId);
 
-    int updateByExampleSelective(@Param("record") CMenuParent record, @Param("example") CMenuParentExample example);
+    int updateByExampleSelective(@Param("record") MenuParent record, @Param("example") MenuParentExample example);
 
-    int updateByExample(@Param("record") CMenuParent record, @Param("example") CMenuParentExample example);
+    int updateByExample(@Param("record") MenuParent record, @Param("example") MenuParentExample example);
 
-    int updateByPrimaryKeySelective(CMenuParent record);
+    int updateByPrimaryKeySelective(MenuParent record);
 
-    int updateByPrimaryKey(CMenuParent record);
+    int updateByPrimaryKey(MenuParent record);
 }

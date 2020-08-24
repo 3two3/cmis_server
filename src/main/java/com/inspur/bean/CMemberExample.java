@@ -114,62 +114,62 @@ public class CMemberExample {
             return (Criteria) this;
         }
 
-        public Criteria andMemIdEqualTo(String value) {
+        public Criteria andMemIdEqualTo(Integer value) {
             addCriterion("MEM_ID =", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdNotEqualTo(String value) {
+        public Criteria andMemIdNotEqualTo(Integer value) {
             addCriterion("MEM_ID <>", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdGreaterThan(String value) {
+        public Criteria andMemIdGreaterThan(Integer value) {
             addCriterion("MEM_ID >", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdGreaterThanOrEqualTo(String value) {
+        public Criteria andMemIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("MEM_ID >=", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdLessThan(String value) {
+        public Criteria andMemIdLessThan(Integer value) {
             addCriterion("MEM_ID <", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdLessThanOrEqualTo(String value) {
+        public Criteria andMemIdLessThanOrEqualTo(Integer value) {
             addCriterion("MEM_ID <=", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdLike(String value) {
+        public Criteria andMemIdLike(Integer value) {
             addCriterion("MEM_ID like", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdNotLike(String value) {
+        public Criteria andMemIdNotLike(Integer value) {
             addCriterion("MEM_ID not like", value, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdIn(List<String> values) {
+        public Criteria andMemIdIn(List<Integer> values) {
             addCriterion("MEM_ID in", values, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdNotIn(List<String> values) {
+        public Criteria andMemIdNotIn(List<Integer> values) {
             addCriterion("MEM_ID not in", values, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdBetween(String value1, String value2) {
+        public Criteria andMemIdBetween(Integer value1, Integer value2) {
             addCriterion("MEM_ID between", value1, value2, "memId");
             return (Criteria) this;
         }
 
-        public Criteria andMemIdNotBetween(String value1, String value2) {
+        public Criteria andMemIdNotBetween(Integer value1, Integer value2) {
             addCriterion("MEM_ID not between", value1, value2, "memId");
             return (Criteria) this;
         }

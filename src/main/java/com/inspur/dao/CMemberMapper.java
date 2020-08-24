@@ -2,7 +2,9 @@ package com.inspur.dao;
 
 import com.inspur.bean.CMember;
 import com.inspur.bean.CMemberExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CMemberMapper {
@@ -10,7 +12,7 @@ public interface CMemberMapper {
 
     int deleteByExample(CMemberExample example);
 
-    int deleteByPrimaryKey(String memId);
+    int deleteByPrimaryKey(Integer memId);
 
     int insert(CMember record);
 
@@ -18,7 +20,7 @@ public interface CMemberMapper {
 
     List<CMember> selectByExample(CMemberExample example);
 
-    CMember selectByPrimaryKey(String memId);
+    CMember selectByPrimaryKey(Integer memId);
 
     int updateByExampleSelective(@Param("record") CMember record, @Param("example") CMemberExample example);
 
@@ -27,4 +29,6 @@ public interface CMemberMapper {
     int updateByPrimaryKeySelective(CMember record);
 
     int updateByPrimaryKey(CMember record);
+
+    Integer selectCmIdByName(String memName);
 }

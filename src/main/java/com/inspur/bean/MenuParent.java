@@ -1,6 +1,11 @@
 package com.inspur.bean;
 
-public class CMenuParent {
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class MenuParent {
     private Integer menuId;
 
     private String menuName;
@@ -10,6 +15,8 @@ public class CMenuParent {
     private String menuIcon;
 
     private String parentName;
+
+    List<MenuManagement> menus;
 
     public Integer getMenuId() {
         return menuId;

@@ -1,7 +1,9 @@
 package com.inspur.bean;
 
-import java.math.BigDecimal;
+import lombok.Data;
 
+import java.math.BigDecimal;
+@Data
 public class Cinfo {
     private Integer cKey;
 

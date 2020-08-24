@@ -2,7 +2,7 @@ package com.inspur.bean;
 
 import java.math.BigDecimal;
 
-public class CDict {
+public class Dict {
     private Integer dictId;
 
     private String dictName;

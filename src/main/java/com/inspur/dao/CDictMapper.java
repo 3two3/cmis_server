@@ -1,30 +1,30 @@
 package com.inspur.dao;
 
-import com.inspur.bean.CDict;
-import com.inspur.bean.CDictExample;
+import com.inspur.bean.Dict;
+import com.inspur.bean.DictExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CDictMapper {
-    long countByExample(CDictExample example);
+    long countByExample(DictExample example);
 
-    int deleteByExample(CDictExample example);
+    int deleteByExample(DictExample example);
 
     int deleteByPrimaryKey(Integer dictId);
 
-    int insert(CDict record);
+    int insert(Dict record);
 
-    int insertSelective(CDict record);
+    int insertSelective(Dict record);
 
-    List<CDict> selectByExample(CDictExample example);
+    List<Dict> selectByExample(DictExample example);
 
-    CDict selectByPrimaryKey(Integer dictId);
+    Dict selectByPrimaryKey(Integer dictId);
 
-    int updateByExampleSelective(@Param("record") CDict record, @Param("example") CDictExample example);
+    int updateByExampleSelective(@Param("record") Dict record, @Param("example") DictExample example);
 
-    int updateByExample(@Param("record") CDict record, @Param("example") CDictExample example);
+    int updateByExample(@Param("record") Dict record, @Param("example") DictExample example);
 
-    int updateByPrimaryKeySelective(CDict record);
+    int updateByPrimaryKeySelective(Dict record);
 
-    int updateByPrimaryKey(CDict record);
+    int updateByPrimaryKey(Dict record);
 }

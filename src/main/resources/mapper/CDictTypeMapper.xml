@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inspur.dao.CDictTypeMapper">
-  <resultMap id="BaseResultMap" type="com.inspur.bean.CDictType">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.DictType">
     <id column="dict_type_id" jdbcType="INTEGER" property="dictTypeId" />
     <result column="dict_type_name" jdbcType="VARCHAR" property="dictTypeName" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List">
     dict_type_id, dict_type_name
   </sql>
-  <select id="selectByExample" parameterType="com.inspur.bean.CDictTypeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.inspur.bean.DictTypeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -90,17 +90,17 @@
     delete from gzcrm_dict_type
     where dict_type_id = #{dictTypeId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.inspur.bean.CDictTypeExample">
+  <delete id="deleteByExample" parameterType="com.inspur.bean.DictTypeExample">
     delete from gzcrm_dict_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.inspur.bean.CDictType">
+  <insert id="insert" parameterType="com.inspur.bean.DictType">
     insert into gzcrm_dict_type (dict_type_id, dict_type_name)
     values (#{dictTypeId,jdbcType=INTEGER}, #{dictTypeName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.inspur.bean.CDictType">
+  <insert id="insertSelective" parameterType="com.inspur.bean.DictType">
     insert into gzcrm_dict_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dictTypeId != null">
@@ -119,7 +119,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.inspur.bean.CDictTypeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.inspur.bean.DictTypeExample" resultType="java.lang.Long">
     select count(*) from gzcrm_dict_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -147,7 +147,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CDictType">
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.DictType">
     update gzcrm_dict_type
     <set>
       <if test="dictTypeName != null">
@@ -156,7 +156,7 @@
     </set>
     where dict_type_id = #{dictTypeId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CDictType">
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.DictType">
     update gzcrm_dict_type
     set dict_type_name = #{dictTypeName,jdbcType=VARCHAR}
     where dict_type_id = #{dictTypeId,jdbcType=INTEGER}

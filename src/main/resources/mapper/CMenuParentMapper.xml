@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inspur.dao.CMenuParentMapper">
-  <resultMap id="BaseResultMap" type="com.inspur.bean.CMenuParent">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.MenuParent">
     <id column="menu_id" jdbcType="INTEGER" property="menuId" />
     <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
     <result column="is_show" jdbcType="CHAR" property="isShow" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     menu_id, menu_name, is_show, MENU_ICON, parent_name
   </sql>
-  <select id="selectByExample" parameterType="com.inspur.bean.CMenuParentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.inspur.bean.MenuParentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from gzcrm_menu_parent
     where menu_id = #{menuId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.inspur.bean.CMenuParentExample">
+  <delete id="deleteByExample" parameterType="com.inspur.bean.MenuParentExample">
     delete from gzcrm_menu_parent
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.inspur.bean.CMenuParent">
+  <insert id="insert" parameterType="com.inspur.bean.MenuParent">
     insert into gzcrm_menu_parent (menu_id, menu_name, is_show, 
       MENU_ICON, parent_name)
     values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{isShow,jdbcType=CHAR}, 
       #{menuIcon,jdbcType=VARCHAR}, #{parentName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.inspur.bean.CMenuParent">
+  <insert id="insertSelective" parameterType="com.inspur.bean.MenuParent">
     insert into gzcrm_menu_parent
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="menuId != null">
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.inspur.bean.CMenuParentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.inspur.bean.MenuParentExample" resultType="java.lang.Long">
     select count(*) from gzcrm_menu_parent
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CMenuParent">
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.MenuParent">
     update gzcrm_menu_parent
     <set>
       <if test="menuName != null">
@@ -200,7 +200,7 @@
     </set>
     where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CMenuParent">
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.MenuParent">
     update gzcrm_menu_parent
     set menu_name = #{menuName,jdbcType=VARCHAR},
       is_show = #{isShow,jdbcType=CHAR},

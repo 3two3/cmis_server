@@ -1,6 +1,6 @@
 package com.inspur.bean;
 
-public class CDictType {
+public class DictType {
     private Integer dictTypeId;
 
     private String dictTypeName;

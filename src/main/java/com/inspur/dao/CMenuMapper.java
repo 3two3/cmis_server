@@ -1,30 +1,30 @@
 package com.inspur.dao;
 
-import com.inspur.bean.CMenu;
-import com.inspur.bean.CMenuExample;
+import com.inspur.bean.MenuManagement;
+import com.inspur.bean.MenuManagementExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CMenuMapper {
-    long countByExample(CMenuExample example);
+    long countByExample(MenuManagementExample example);
 
-    int deleteByExample(CMenuExample example);
+    int deleteByExample(MenuManagementExample example);
 
     int deleteByPrimaryKey(Integer menuId);
 
-    int insert(CMenu record);
+    int insert(MenuManagement record);
 
-    int insertSelective(CMenu record);
+    int insertSelective(MenuManagement record);
 
-    List<CMenu> selectByExample(CMenuExample example);
+    List<MenuManagement> selectByExample(MenuManagementExample example);
 
-    CMenu selectByPrimaryKey(Integer menuId);
+    MenuManagement selectByPrimaryKey(Integer menuId);
 
-    int updateByExampleSelective(@Param("record") CMenu record, @Param("example") CMenuExample example);
+    int updateByExampleSelective(@Param("record") MenuManagement record, @Param("example") MenuManagementExample example);
 
-    int updateByExample(@Param("record") CMenu record, @Param("example") CMenuExample example);
+    int updateByExample(@Param("record") MenuManagement record, @Param("example") MenuManagementExample example);
 
-    int updateByPrimaryKeySelective(CMenu record);
+    int updateByPrimaryKeySelective(MenuManagement record);
 
-    int updateByPrimaryKey(CMenu record);
+    int updateByPrimaryKey(MenuManagement record);
 }

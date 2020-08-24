@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inspur.dao.CDictMapper">
-  <resultMap id="BaseResultMap" type="com.inspur.bean.CDict">
+  <resultMap id="BaseResultMap" type="com.inspur.bean.Dict">
     <id column="DICT_ID" jdbcType="INTEGER" property="dictId" />
     <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
     <result column="DICT_VALUE" jdbcType="INTEGER" property="dictValue" />
@@ -73,7 +73,7 @@
     DICT_ID, DICT_NAME, DICT_VALUE, DICT_TYPE, DICT_DESCRIPTION, DICT_SORT, DICT_REMARKS, 
     DEL_FLAG
   </sql>
-  <select id="selectByExample" parameterType="com.inspur.bean.CDictExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.inspur.bean.DictExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from gzcrm_dict
     where DICT_ID = #{dictId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.inspur.bean.CDictExample">
+  <delete id="deleteByExample" parameterType="com.inspur.bean.DictExample">
     delete from gzcrm_dict
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.inspur.bean.CDict">
+  <insert id="insert" parameterType="com.inspur.bean.Dict">
     insert into gzcrm_dict (DICT_ID, DICT_NAME, DICT_VALUE, 
       DICT_TYPE, DICT_DESCRIPTION, DICT_SORT, 
       DICT_REMARKS, DEL_FLAG)
@@ -111,7 +111,7 @@
       #{dictType,jdbcType=VARCHAR}, #{dictDescription,jdbcType=VARCHAR}, #{dictSort,jdbcType=DECIMAL}, 
       #{dictRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.inspur.bean.CDict">
+  <insert id="insertSelective" parameterType="com.inspur.bean.Dict">
     insert into gzcrm_dict
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dictId != null">
@@ -166,7 +166,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.inspur.bean.CDictExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.inspur.bean.DictExample" resultType="java.lang.Long">
     select count(*) from gzcrm_dict
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -218,7 +218,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CDict">
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.Dict">
     update gzcrm_dict
     <set>
       <if test="dictName != null">
@@ -245,7 +245,7 @@
     </set>
     where DICT_ID = #{dictId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CDict">
+  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Dict">
     update gzcrm_dict
     set DICT_NAME = #{dictName,jdbcType=VARCHAR},
       DICT_VALUE = #{dictValue,jdbcType=INTEGER},

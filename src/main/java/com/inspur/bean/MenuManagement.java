@@ -1,6 +1,6 @@
 package com.inspur.bean;
 
-public class CMenu {
+public class MenuManagement {
     private Integer menuId;
 
     private Integer parentId;

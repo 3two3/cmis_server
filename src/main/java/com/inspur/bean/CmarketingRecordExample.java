@@ -174,62 +174,62 @@ public class CmarketingRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdEqualTo(String value) {
+        public Criteria andCCmIdEqualTo(Integer value) {
             addCriterion("C_CM_ID =", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdNotEqualTo(String value) {
+        public Criteria andCCmIdNotEqualTo(Integer value) {
             addCriterion("C_CM_ID <>", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdGreaterThan(String value) {
+        public Criteria andCCmIdGreaterThan(Integer value) {
             addCriterion("C_CM_ID >", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdGreaterThanOrEqualTo(String value) {
+        public Criteria andCCmIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("C_CM_ID >=", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdLessThan(String value) {
+        public Criteria andCCmIdLessThan(Integer value) {
             addCriterion("C_CM_ID <", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdLessThanOrEqualTo(String value) {
+        public Criteria andCCmIdLessThanOrEqualTo(Integer value) {
             addCriterion("C_CM_ID <=", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdLike(String value) {
+        public Criteria andCCmIdLike(Integer value) {
             addCriterion("C_CM_ID like", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdNotLike(String value) {
+        public Criteria andCCmIdNotLike(Integer value) {
             addCriterion("C_CM_ID not like", value, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdIn(List<String> values) {
+        public Criteria andCCmIdIn(List<Integer> values) {
             addCriterion("C_CM_ID in", values, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdNotIn(List<String> values) {
+        public Criteria andCCmIdNotIn(List<Integer> values) {
             addCriterion("C_CM_ID not in", values, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdBetween(String value1, String value2) {
+        public Criteria andCCmIdBetween(Integer value1, Integer value2) {
             addCriterion("C_CM_ID between", value1, value2, "cCmId");
             return (Criteria) this;
         }
 
-        public Criteria andCCmIdNotBetween(String value1, String value2) {
+        public Criteria andCCmIdNotBetween(Integer value1, Integer value2) {
             addCriterion("C_CM_ID not between", value1, value2, "cCmId");
             return (Criteria) this;
         }
@@ -734,57 +734,57 @@ public class CmarketingRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andCIdEqualTo(String value) {
+        public Criteria andCIdEqualTo(Integer value) {
             addCriterion("C_ID =", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdNotEqualTo(String value) {
+        public Criteria andCIdNotEqualTo(Integer value) {
             addCriterion("C_ID <>", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdGreaterThan(String value) {
+        public Criteria andCIdGreaterThan(Integer value) {
             addCriterion("C_ID >", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdGreaterThanOrEqualTo(String value) {
+        public Criteria andCIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("C_ID >=", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdLessThan(String value) {
+        public Criteria andCIdLessThan(Integer value) {
             addCriterion("C_ID <", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdLessThanOrEqualTo(String value) {
+        public Criteria andCIdLessThanOrEqualTo(Integer value) {
             addCriterion("C_ID <=", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdLike(String value) {
+        public Criteria andCIdLike(Integer value) {
             addCriterion("C_ID like", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdNotLike(String value) {
+        public Criteria andCIdNotLike(Integer value) {
             addCriterion("C_ID not like", value, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdIn(List<String> values) {
+        public Criteria andCIdIn(List<Integer> values) {
             addCriterion("C_ID in", values, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdNotIn(List<String> values) {
+        public Criteria andCIdNotIn(List<Integer> values) {
             addCriterion("C_ID not in", values, "cId");
             return (Criteria) this;
         }
 
-        public Criteria andCIdBetween(String value1, String value2) {
+        public Criteria andCIdBetween(Integer value1, Integer value2) {
             addCriterion("C_ID between", value1, value2, "cId");
             return (Criteria) this;
         }

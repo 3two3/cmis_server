@@ -1,339 +1,344 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.inspur.dao.CMemberMapper">
-  <resultMap id="BaseResultMap" type="com.inspur.bean.CMember">
-    <id column="MEM_ID" jdbcType="VARCHAR" property="memId" />
-    <result column="MEM_NAME" jdbcType="VARCHAR" property="memName" />
-    <result column="MEM_PASS" jdbcType="VARCHAR" property="memPass" />
-    <result column="MEM_SEX" jdbcType="VARCHAR" property="memSex" />
-    <result column="MEM_BORN" jdbcType="VARCHAR" property="memBorn" />
-    <result column="MEM_MAIL" jdbcType="VARCHAR" property="memMail" />
-    <result column="MEM_QUESTION" jdbcType="VARCHAR" property="memQuestion" />
-    <result column="MEM_ANSWER" jdbcType="VARCHAR" property="memAnswer" />
-    <result column="REGISTER_TIME" jdbcType="VARCHAR" property="registerTime" />
-    <result column="LAST_TIME" jdbcType="VARCHAR" property="lastTime" />
-    <result column="IS_SHOW" jdbcType="CHAR" property="isShow" />
-    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
-    <result column="MEM_REMARKS" jdbcType="VARCHAR" property="memRemarks" />
-    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.inspur.bean.CMember">
+        <id column="MEM_ID" jdbcType="INTEGER" property="memId"/>
+        <result column="MEM_NAME" jdbcType="VARCHAR" property="memName"/>
+        <result column="MEM_PASS" jdbcType="VARCHAR" property="memPass"/>
+        <result column="MEM_SEX" jdbcType="VARCHAR" property="memSex"/>
+        <result column="MEM_BORN" jdbcType="VARCHAR" property="memBorn"/>
+        <result column="MEM_MAIL" jdbcType="VARCHAR" property="memMail"/>
+        <result column="MEM_QUESTION" jdbcType="VARCHAR" property="memQuestion"/>
+        <result column="MEM_ANSWER" jdbcType="VARCHAR" property="memAnswer"/>
+        <result column="REGISTER_TIME" jdbcType="VARCHAR" property="registerTime"/>
+        <result column="LAST_TIME" jdbcType="VARCHAR" property="lastTime"/>
+        <result column="IS_SHOW" jdbcType="CHAR" property="isShow"/>
+        <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId"/>
+        <result column="MEM_REMARKS" jdbcType="VARCHAR" property="memRemarks"/>
+        <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     MEM_ID, MEM_NAME, MEM_PASS, MEM_SEX, MEM_BORN, MEM_MAIL, MEM_QUESTION, MEM_ANSWER, 
     REGISTER_TIME, LAST_TIME, IS_SHOW, ROLE_ID, MEM_REMARKS, DEL_FLAG
   </sql>
-  <select id="selectByExample" parameterType="com.inspur.bean.CMemberExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from gzcrm_member
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from gzcrm_member
-    where MEM_ID = #{memId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <select id="selectByExample" parameterType="com.inspur.bean.CMemberExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from gzcrm_member
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gzcrm_member
+        where MEM_ID = #{memId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from gzcrm_member
-    where MEM_ID = #{memId,jdbcType=VARCHAR}
+    where MEM_ID = #{memId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.inspur.bean.CMemberExample">
-    delete from gzcrm_member
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.inspur.bean.CMember">
+    <delete id="deleteByExample" parameterType="com.inspur.bean.CMemberExample">
+        delete from gzcrm_member
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.inspur.bean.CMember">
     insert into gzcrm_member (MEM_ID, MEM_NAME, MEM_PASS, 
       MEM_SEX, MEM_BORN, MEM_MAIL, 
       MEM_QUESTION, MEM_ANSWER, REGISTER_TIME, 
       LAST_TIME, IS_SHOW, ROLE_ID, 
       MEM_REMARKS, DEL_FLAG)
-    values (#{memId,jdbcType=VARCHAR}, #{memName,jdbcType=VARCHAR}, #{memPass,jdbcType=VARCHAR}, 
+    values (#{memId,jdbcType=INTEGER}, #{memName,jdbcType=VARCHAR}, #{memPass,jdbcType=VARCHAR},
       #{memSex,jdbcType=VARCHAR}, #{memBorn,jdbcType=VARCHAR}, #{memMail,jdbcType=VARCHAR}, 
       #{memQuestion,jdbcType=VARCHAR}, #{memAnswer,jdbcType=VARCHAR}, #{registerTime,jdbcType=VARCHAR}, 
       #{lastTime,jdbcType=VARCHAR}, #{isShow,jdbcType=CHAR}, #{roleId,jdbcType=VARCHAR}, 
       #{memRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.inspur.bean.CMember">
-    insert into gzcrm_member
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="memId != null">
-        MEM_ID,
-      </if>
-      <if test="memName != null">
-        MEM_NAME,
-      </if>
-      <if test="memPass != null">
-        MEM_PASS,
-      </if>
-      <if test="memSex != null">
-        MEM_SEX,
-      </if>
-      <if test="memBorn != null">
-        MEM_BORN,
-      </if>
-      <if test="memMail != null">
-        MEM_MAIL,
-      </if>
-      <if test="memQuestion != null">
-        MEM_QUESTION,
-      </if>
-      <if test="memAnswer != null">
-        MEM_ANSWER,
-      </if>
-      <if test="registerTime != null">
-        REGISTER_TIME,
-      </if>
-      <if test="lastTime != null">
-        LAST_TIME,
-      </if>
-      <if test="isShow != null">
-        IS_SHOW,
-      </if>
-      <if test="roleId != null">
-        ROLE_ID,
-      </if>
-      <if test="memRemarks != null">
-        MEM_REMARKS,
-      </if>
-      <if test="delFlag != null">
-        DEL_FLAG,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="memId != null">
-        #{memId,jdbcType=VARCHAR},
-      </if>
-      <if test="memName != null">
-        #{memName,jdbcType=VARCHAR},
-      </if>
-      <if test="memPass != null">
-        #{memPass,jdbcType=VARCHAR},
-      </if>
-      <if test="memSex != null">
-        #{memSex,jdbcType=VARCHAR},
-      </if>
-      <if test="memBorn != null">
-        #{memBorn,jdbcType=VARCHAR},
-      </if>
-      <if test="memMail != null">
-        #{memMail,jdbcType=VARCHAR},
-      </if>
-      <if test="memQuestion != null">
-        #{memQuestion,jdbcType=VARCHAR},
-      </if>
-      <if test="memAnswer != null">
-        #{memAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="registerTime != null">
-        #{registerTime,jdbcType=VARCHAR},
-      </if>
-      <if test="lastTime != null">
-        #{lastTime,jdbcType=VARCHAR},
-      </if>
-      <if test="isShow != null">
-        #{isShow,jdbcType=CHAR},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="memRemarks != null">
-        #{memRemarks,jdbcType=VARCHAR},
-      </if>
-      <if test="delFlag != null">
-        #{delFlag,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.inspur.bean.CMemberExample" resultType="java.lang.Long">
-    select count(*) from gzcrm_member
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update gzcrm_member
-    <set>
-      <if test="record.memId != null">
-        MEM_ID = #{record.memId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memName != null">
+    <insert id="insertSelective" parameterType="com.inspur.bean.CMember">
+        insert into gzcrm_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memId != null">
+                MEM_ID,
+            </if>
+            <if test="memName != null">
+                MEM_NAME,
+            </if>
+            <if test="memPass != null">
+                MEM_PASS,
+            </if>
+            <if test="memSex != null">
+                MEM_SEX,
+            </if>
+            <if test="memBorn != null">
+                MEM_BORN,
+            </if>
+            <if test="memMail != null">
+                MEM_MAIL,
+            </if>
+            <if test="memQuestion != null">
+                MEM_QUESTION,
+            </if>
+            <if test="memAnswer != null">
+                MEM_ANSWER,
+            </if>
+            <if test="registerTime != null">
+                REGISTER_TIME,
+            </if>
+            <if test="lastTime != null">
+                LAST_TIME,
+            </if>
+            <if test="isShow != null">
+                IS_SHOW,
+            </if>
+            <if test="roleId != null">
+                ROLE_ID,
+            </if>
+            <if test="memRemarks != null">
+                MEM_REMARKS,
+            </if>
+            <if test="delFlag != null">
+                DEL_FLAG,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memId != null">
+                #{memId,jdbcType=VARCHAR},
+            </if>
+            <if test="memName != null">
+                #{memName,jdbcType=VARCHAR},
+            </if>
+            <if test="memPass != null">
+                #{memPass,jdbcType=VARCHAR},
+            </if>
+            <if test="memSex != null">
+                #{memSex,jdbcType=VARCHAR},
+            </if>
+            <if test="memBorn != null">
+                #{memBorn,jdbcType=VARCHAR},
+            </if>
+            <if test="memMail != null">
+                #{memMail,jdbcType=VARCHAR},
+            </if>
+            <if test="memQuestion != null">
+                #{memQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="memAnswer != null">
+                #{memAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                #{registerTime,jdbcType=VARCHAR},
+            </if>
+            <if test="lastTime != null">
+                #{lastTime,jdbcType=VARCHAR},
+            </if>
+            <if test="isShow != null">
+                #{isShow,jdbcType=CHAR},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="memRemarks != null">
+                #{memRemarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.inspur.bean.CMemberExample" resultType="java.lang.Long">
+        select count(*) from gzcrm_member
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <select id="selectCmIdByName" resultType="java.lang.Integer">
+      select CM_ID from gzcrm_cminfo where CM_NAME = #{memName}
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update gzcrm_member
+        <set>
+            <if test="record.memId != null">
+                MEM_ID = #{record.memId,jdbcType=INTEGER},
+            </if>
+            <if test="record.memName != null">
+                MEM_NAME = #{record.memName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memPass != null">
+                MEM_PASS = #{record.memPass,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memSex != null">
+                MEM_SEX = #{record.memSex,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memBorn != null">
+                MEM_BORN = #{record.memBorn,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memMail != null">
+                MEM_MAIL = #{record.memMail,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memQuestion != null">
+                MEM_QUESTION = #{record.memQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memAnswer != null">
+                MEM_ANSWER = #{record.memAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="record.registerTime != null">
+                REGISTER_TIME = #{record.registerTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastTime != null">
+                LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isShow != null">
+                IS_SHOW = #{record.isShow,jdbcType=CHAR},
+            </if>
+            <if test="record.roleId != null">
+                ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memRemarks != null">
+                MEM_REMARKS = #{record.memRemarks,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delFlag != null">
+                DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update gzcrm_member
+        set MEM_ID = #{record.memId,jdbcType=INTEGER},
         MEM_NAME = #{record.memName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memPass != null">
         MEM_PASS = #{record.memPass,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memSex != null">
         MEM_SEX = #{record.memSex,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memBorn != null">
         MEM_BORN = #{record.memBorn,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memMail != null">
         MEM_MAIL = #{record.memMail,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memQuestion != null">
         MEM_QUESTION = #{record.memQuestion,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memAnswer != null">
         MEM_ANSWER = #{record.memAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="record.registerTime != null">
         REGISTER_TIME = #{record.registerTime,jdbcType=VARCHAR},
-      </if>
-      <if test="record.lastTime != null">
         LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isShow != null">
         IS_SHOW = #{record.isShow,jdbcType=CHAR},
-      </if>
-      <if test="record.roleId != null">
         ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memRemarks != null">
         MEM_REMARKS = #{record.memRemarks,jdbcType=VARCHAR},
-      </if>
-      <if test="record.delFlag != null">
-        DEL_FLAG = #{record.delFlag,jdbcType=CHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update gzcrm_member
-    set MEM_ID = #{record.memId,jdbcType=VARCHAR},
-      MEM_NAME = #{record.memName,jdbcType=VARCHAR},
-      MEM_PASS = #{record.memPass,jdbcType=VARCHAR},
-      MEM_SEX = #{record.memSex,jdbcType=VARCHAR},
-      MEM_BORN = #{record.memBorn,jdbcType=VARCHAR},
-      MEM_MAIL = #{record.memMail,jdbcType=VARCHAR},
-      MEM_QUESTION = #{record.memQuestion,jdbcType=VARCHAR},
-      MEM_ANSWER = #{record.memAnswer,jdbcType=VARCHAR},
-      REGISTER_TIME = #{record.registerTime,jdbcType=VARCHAR},
-      LAST_TIME = #{record.lastTime,jdbcType=VARCHAR},
-      IS_SHOW = #{record.isShow,jdbcType=CHAR},
-      ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
-      MEM_REMARKS = #{record.memRemarks,jdbcType=VARCHAR},
-      DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CMember">
-    update gzcrm_member
-    <set>
-      <if test="memName != null">
-        MEM_NAME = #{memName,jdbcType=VARCHAR},
-      </if>
-      <if test="memPass != null">
-        MEM_PASS = #{memPass,jdbcType=VARCHAR},
-      </if>
-      <if test="memSex != null">
-        MEM_SEX = #{memSex,jdbcType=VARCHAR},
-      </if>
-      <if test="memBorn != null">
-        MEM_BORN = #{memBorn,jdbcType=VARCHAR},
-      </if>
-      <if test="memMail != null">
-        MEM_MAIL = #{memMail,jdbcType=VARCHAR},
-      </if>
-      <if test="memQuestion != null">
-        MEM_QUESTION = #{memQuestion,jdbcType=VARCHAR},
-      </if>
-      <if test="memAnswer != null">
-        MEM_ANSWER = #{memAnswer,jdbcType=VARCHAR},
-      </if>
-      <if test="registerTime != null">
-        REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
-      </if>
-      <if test="lastTime != null">
-        LAST_TIME = #{lastTime,jdbcType=VARCHAR},
-      </if>
-      <if test="isShow != null">
-        IS_SHOW = #{isShow,jdbcType=CHAR},
-      </if>
-      <if test="roleId != null">
-        ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="memRemarks != null">
-        MEM_REMARKS = #{memRemarks,jdbcType=VARCHAR},
-      </if>
-      <if test="delFlag != null">
-        DEL_FLAG = #{delFlag,jdbcType=CHAR},
-      </if>
-    </set>
-    where MEM_ID = #{memId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CMember">
+        DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.inspur.bean.CMember">
+        update gzcrm_member
+        <set>
+            <if test="memName != null">
+                MEM_NAME = #{memName,jdbcType=VARCHAR},
+            </if>
+            <if test="memPass != null">
+                MEM_PASS = #{memPass,jdbcType=VARCHAR},
+            </if>
+            <if test="memSex != null">
+                MEM_SEX = #{memSex,jdbcType=VARCHAR},
+            </if>
+            <if test="memBorn != null">
+                MEM_BORN = #{memBorn,jdbcType=VARCHAR},
+            </if>
+            <if test="memMail != null">
+                MEM_MAIL = #{memMail,jdbcType=VARCHAR},
+            </if>
+            <if test="memQuestion != null">
+                MEM_QUESTION = #{memQuestion,jdbcType=VARCHAR},
+            </if>
+            <if test="memAnswer != null">
+                MEM_ANSWER = #{memAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+            </if>
+            <if test="lastTime != null">
+                LAST_TIME = #{lastTime,jdbcType=VARCHAR},
+            </if>
+            <if test="isShow != null">
+                IS_SHOW = #{isShow,jdbcType=CHAR},
+            </if>
+            <if test="roleId != null">
+                ROLE_ID = #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="memRemarks != null">
+                MEM_REMARKS = #{memRemarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                DEL_FLAG = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where MEM_ID = #{memId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CMember">
     update gzcrm_member
     set MEM_NAME = #{memName,jdbcType=VARCHAR},
       MEM_PASS = #{memPass,jdbcType=VARCHAR},
@@ -348,6 +353,6 @@
       ROLE_ID = #{roleId,jdbcType=VARCHAR},
       MEM_REMARKS = #{memRemarks,jdbcType=VARCHAR},
       DEL_FLAG = #{delFlag,jdbcType=CHAR}
-    where MEM_ID = #{memId,jdbcType=VARCHAR}
+    where MEM_ID = #{memId,jdbcType=INTEGER}
   </update>
 </mapper>

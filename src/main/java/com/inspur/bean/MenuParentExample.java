@@ -3,14 +3,14 @@ package com.inspur.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CMenuParentExample {
+public class MenuParentExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CMenuParentExample() {
+    public MenuParentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

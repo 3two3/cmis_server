@@ -27,4 +27,5 @@ public interface CinfoMapper {
     int updateByPrimaryKeySelective(Cinfo record);
 
     int updateByPrimaryKey(Cinfo record);
+
 }

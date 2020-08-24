@@ -3,7 +3,7 @@ package com.inspur.bean;
 public class CmarketingRecord {
     private Integer cKey;
 
-    private String cCmId;
+    private Integer cCmId;
 
     private String cName;
 
@@ -19,7 +19,7 @@ public class CmarketingRecord {
 
     private String cDate;
 
-    private String cId;
+    private Integer cId;
 
     private String cRemarks;
 
@@ -33,12 +33,12 @@ public class CmarketingRecord {
         this.cKey = cKey;
     }
 
-    public String getcCmId() {
+    public Integer getcCmId() {
         return cCmId;
     }
 
-    public void setcCmId(String cCmId) {
-        this.cCmId = cCmId == null ? null : cCmId.trim();
+    public void setcCmId(Integer cCmId) {
+        this.cCmId = cCmId;
     }
 
     public String getcName() {
@@ -97,12 +97,12 @@ public class CmarketingRecord {
         this.cDate = cDate == null ? null : cDate.trim();
     }
 
-    public String getcId() {
+    public Integer getcId() {
         return cId;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId == null ? null : cId.trim();
+    public void setcId(Integer cId) {
+        this.cId = cId;
     }
 
     public String getcRemarks() {

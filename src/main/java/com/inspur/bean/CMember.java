@@ -1,7 +1,10 @@
 package com.inspur.bean;
 
-public class CMember {
-    private String memId;
+import java.io.Serializable;
+
+public class CMember implements Serializable {
+
+    private Integer memId;
 
     private String memName;
 
@@ -29,12 +32,12 @@ public class CMember {
 
     private String delFlag;
 
-    public String getMemId() {
+    public Integer getMemId() {
         return memId;
     }
 
-    public void setMemId(String memId) {
-        this.memId = memId == null ? null : memId.trim();
+    public void setMemId(Integer memId) {
+        this.memId = memId;
     }
 
     public String getMemName() {

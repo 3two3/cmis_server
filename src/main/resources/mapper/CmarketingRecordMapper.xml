@@ -3,7 +3,7 @@
 <mapper namespace="com.inspur.dao.CmarketingRecordMapper">
   <resultMap id="BaseResultMap" type="com.inspur.bean.CmarketingRecord">
     <id column="C_KEY" jdbcType="INTEGER" property="cKey" />
-    <result column="C_CM_ID" jdbcType="CHAR" property="cCmId" />
+    <result column="C_CM_ID" jdbcType="INTEGER" property="cCmId" />
     <result column="C_NAME" jdbcType="VARCHAR" property="cName" />
     <result column="C_MANAGEMENT" jdbcType="VARCHAR" property="cManagement" />
     <result column="C_DEMAND" jdbcType="VARCHAR" property="cDemand" />
@@ -11,7 +11,7 @@
     <result column="C_TESTIMONIALS" jdbcType="VARCHAR" property="cTestimonials" />
     <result column="C_EVALUATION" jdbcType="VARCHAR" property="cEvaluation" />
     <result column="C_DATE" jdbcType="VARCHAR" property="cDate" />
-    <result column="C_ID" jdbcType="VARCHAR" property="cId" />
+    <result column="C_ID" jdbcType="INTEGER" property="cId" />
     <result column="C_REMARKS" jdbcType="VARCHAR" property="cRemarks" />
     <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
   </resultMap>
@@ -113,10 +113,10 @@
       C_TESTIMONIALS, C_EVALUATION, C_DATE, 
       C_ID, C_REMARKS, DEL_FLAG
       )
-    values (#{cKey,jdbcType=INTEGER}, #{cCmId,jdbcType=CHAR}, #{cName,jdbcType=VARCHAR}, 
+    values (#{cKey,jdbcType=INTEGER}, #{cCmId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR},
       #{cManagement,jdbcType=VARCHAR}, #{cDemand,jdbcType=VARCHAR}, #{cReport,jdbcType=VARCHAR}, 
       #{cTestimonials,jdbcType=VARCHAR}, #{cEvaluation,jdbcType=VARCHAR}, #{cDate,jdbcType=VARCHAR}, 
-      #{cId,jdbcType=VARCHAR}, #{cRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
+      #{cId,jdbcType=INTEGER}, #{cRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.inspur.bean.CmarketingRecord">
@@ -164,7 +164,7 @@
         #{cKey,jdbcType=INTEGER},
       </if>
       <if test="cCmId != null">
-        #{cCmId,jdbcType=CHAR},
+        #{cCmId,jdbcType=INTEGER},
       </if>
       <if test="cName != null">
         #{cName,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
         #{cDate,jdbcType=VARCHAR},
       </if>
       <if test="cId != null">
-        #{cId,jdbcType=VARCHAR},
+        #{cId,jdbcType=INTEGER},
       </if>
       <if test="cRemarks != null">
         #{cRemarks,jdbcType=VARCHAR},
@@ -211,7 +211,7 @@
         C_KEY = #{record.cKey,jdbcType=INTEGER},
       </if>
       <if test="record.cCmId != null">
-        C_CM_ID = #{record.cCmId,jdbcType=CHAR},
+        C_CM_ID = #{record.cCmId,jdbcType=INTEGER},
       </if>
       <if test="record.cName != null">
         C_NAME = #{record.cName,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
         C_DATE = #{record.cDate,jdbcType=VARCHAR},
       </if>
       <if test="record.cId != null">
-        C_ID = #{record.cId,jdbcType=VARCHAR},
+        C_ID = #{record.cId,jdbcType=INTEGER},
       </if>
       <if test="record.cRemarks != null">
         C_REMARKS = #{record.cRemarks,jdbcType=VARCHAR},
@@ -251,7 +251,7 @@
   <update id="updateByExample" parameterType="map">
     update gzcrm_cmarketing_record
     set C_KEY = #{record.cKey,jdbcType=INTEGER},
-      C_CM_ID = #{record.cCmId,jdbcType=CHAR},
+      C_CM_ID = #{record.cCmId,jdbcType=INTEGER},
       C_NAME = #{record.cName,jdbcType=VARCHAR},
       C_MANAGEMENT = #{record.cManagement,jdbcType=VARCHAR},
       C_DEMAND = #{record.cDemand,jdbcType=VARCHAR},
@@ -259,7 +259,7 @@
       C_TESTIMONIALS = #{record.cTestimonials,jdbcType=VARCHAR},
       C_EVALUATION = #{record.cEvaluation,jdbcType=VARCHAR},
       C_DATE = #{record.cDate,jdbcType=VARCHAR},
-      C_ID = #{record.cId,jdbcType=VARCHAR},
+      C_ID = #{record.cId,jdbcType=INTEGER},
       C_REMARKS = #{record.cRemarks,jdbcType=VARCHAR},
       DEL_FLAG = #{record.delFlag,jdbcType=CHAR}
     <if test="_parameter != null">
@@ -270,7 +270,7 @@
     update gzcrm_cmarketing_record
     <set>
       <if test="cCmId != null">
-        C_CM_ID = #{cCmId,jdbcType=CHAR},
+        C_CM_ID = #{cCmId,jdbcType=INTEGER},
       </if>
       <if test="cName != null">
         C_NAME = #{cName,jdbcType=VARCHAR},
@@ -294,7 +294,7 @@
         C_DATE = #{cDate,jdbcType=VARCHAR},
       </if>
       <if test="cId != null">
-        C_ID = #{cId,jdbcType=VARCHAR},
+        C_ID = #{cId,jdbcType=INTEGER},
       </if>
       <if test="cRemarks != null">
         C_REMARKS = #{cRemarks,jdbcType=VARCHAR},
@@ -307,7 +307,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.inspur.bean.CmarketingRecord">
     update gzcrm_cmarketing_record
-    set C_CM_ID = #{cCmId,jdbcType=CHAR},
+    set C_CM_ID = #{cCmId,jdbcType=INTEGER},
       C_NAME = #{cName,jdbcType=VARCHAR},
       C_MANAGEMENT = #{cManagement,jdbcType=VARCHAR},
       C_DEMAND = #{cDemand,jdbcType=VARCHAR},
@@ -315,7 +315,7 @@
       C_TESTIMONIALS = #{cTestimonials,jdbcType=VARCHAR},
       C_EVALUATION = #{cEvaluation,jdbcType=VARCHAR},
       C_DATE = #{cDate,jdbcType=VARCHAR},
-      C_ID = #{cId,jdbcType=VARCHAR},
+      C_ID = #{cId,jdbcType=INTEGER},
       C_REMARKS = #{cRemarks,jdbcType=VARCHAR},
       DEL_FLAG = #{delFlag,jdbcType=CHAR}
     where C_KEY = #{cKey,jdbcType=INTEGER}

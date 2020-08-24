@@ -3,14 +3,14 @@ package com.inspur.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CDictTypeExample {
+public class DictTypeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CDictTypeExample() {
+    public DictTypeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
