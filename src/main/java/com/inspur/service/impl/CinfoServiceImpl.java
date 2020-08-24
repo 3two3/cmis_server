@@ -16,8 +16,8 @@ public class CinfoServiceImpl implements CinfoService {
 
     @Override
     public List<Cinfo> list(String cCmId, String cName, String cSsn) {
-        CinfoExample CinfoExample = new CinfoExample();
-        CinfoExample.Criteria criteria = CinfoExample.createCriteria();
+        CinfoExample cinfoExample = new CinfoExample();
+        CinfoExample.Criteria criteria = cinfoExample.createCriteria();
         if ("".equals(cCmId) && "".equals(cName) && "".equals(cSsn)) {
             return cinfoMapper.selectByExample(null);
         }
@@ -32,7 +32,7 @@ public class CinfoServiceImpl implements CinfoService {
         if (!"".equals(cSsn)) {
             criteria.andCSsnEqualTo(cSsn);
         }
-        return cinfoMapper.selectByExample(CinfoExample);
+        return cinfoMapper.selectByExample(cinfoExample);
     }
 
     @Override
@@ -57,9 +57,9 @@ public class CinfoServiceImpl implements CinfoService {
 
     @Override
     public Integer delCinfos(List<Integer> delIds) {
-        CinfoExample CinfoExample = new CinfoExample();
-        CinfoExample.Criteria criteria = CinfoExample.createCriteria();
+        CinfoExample cinfoExample = new CinfoExample();
+        CinfoExample.Criteria criteria = cinfoExample.createCriteria();
         criteria.andCKeyIn(delIds);
-        return cinfoMapper.deleteByExample(CinfoExample);
+        return cinfoMapper.deleteByExample(cinfoExample);
     }
 }
