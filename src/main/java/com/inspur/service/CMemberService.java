@@ -22,4 +22,5 @@ public interface CMemberService {
     Integer delCMembers(List<Integer> delIds);
 
     Integer selectCmIdByName(CMember cMember);
+
 }

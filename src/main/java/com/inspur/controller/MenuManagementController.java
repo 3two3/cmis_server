@@ -25,6 +25,10 @@ public class MenuManagementController {
     @ResponseBody
     @GetMapping("/list")
     public Result getMenus(HttpServletRequest request) {
+        Object token = request.getSession().getAttribute("token");
+        if (token == null) {
+            return Result.fail().setMsg("用户未登录！");
+        }
         //获取用户权限
         Object role = (String) request.getSession().getAttribute("role");
         //String role = "0";
@@ -41,7 +45,9 @@ public class MenuManagementController {
                     }
                     mp.setMenus(menus);
                 }
+                return Result.success().add("menuParents", menuParents);
             } else {
+                List<MenuParent> menuParents2 = new ArrayList<>();
                 for (MenuParent mp : menuParents) {//循环父菜单
                     List<MenuManagement> menus = new ArrayList();
                     if (role.equals(mp.getIsShow())) {//判断菜单权限是否和用户权限一样
@@ -53,11 +59,11 @@ public class MenuManagementController {
                             }
                         }
                         mp.setMenus(menus);
+                        menuParents2.add(mp);
                     }
                 }
-                menuParents.remove(0);
+                return Result.success().add("menuParents", menuParents2);
             }
-            return Result.success().add("menuParents", menuParents);
         }
         return Result.fail();
     }

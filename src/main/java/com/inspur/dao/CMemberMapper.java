@@ -31,4 +31,5 @@ public interface CMemberMapper {
     int updateByPrimaryKey(CMember record);
 
     Integer selectCmIdByName(String memName);
+
 }

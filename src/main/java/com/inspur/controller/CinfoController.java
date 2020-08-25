@@ -47,7 +47,9 @@ public class CinfoController {
     @PostMapping("/addCinfo")
     public Result addCminfo(@RequestBody Cinfo cinfo, HttpServletRequest request) {
         Object cmId = request.getSession().getAttribute("cmId");
+        Object cmName = request.getSession().getAttribute("cmName");
         cinfo.setcCmId((Integer) cmId);
+        cinfo.setcRemarks((String) cmName);
         int num = cinfoService.add(cinfo);
         if (num != 0) {
             return Result.success();
@@ -57,8 +59,15 @@ public class CinfoController {
 
     @ResponseBody
     @GetMapping("/get/{id}")
-    public Result getCinfoById(@PathVariable("id") Integer id) {
+    public Result getCinfoById(@PathVariable("id") Integer id, HttpServletRequest request) {
         Cinfo cinfo = cinfoService.getCinfoById(id);
+        String role = (String) request.getSession().getAttribute("role");
+        if (!"0".equals(role)) {
+            Integer cmId = (Integer) request.getSession().getAttribute("cmId");
+            if (!cmId.equals(cinfo.getcCmId())) {
+                return Result.fail().setMsg("无法操作其他用户的客户信息！");
+            }
+        }
         if (cinfo != null) {
             return Result.success().add("cinfo", cinfo);
         } else {
@@ -68,7 +77,15 @@ public class CinfoController {
 
     @ResponseBody
     @DeleteMapping("/delCinfo/{id}")
-    public Result delCinfoById(@PathVariable("id") Integer id) {
+    public Result delCinfoById(@PathVariable("id") Integer id, HttpServletRequest request) {
+        Cinfo cinfo = cinfoService.getCinfoById(id);
+        String role = (String) request.getSession().getAttribute("role");
+        if (!"0".equals(role)) {
+            Integer cmId = (Integer) request.getSession().getAttribute("cmId");
+            if (!cmId.equals(cinfo.getcCmId())) {
+                return Result.fail().setMsg("无法操作其他用户的客户信息！");
+            }
+        }
         int num = cinfoService.deleteById(id);
         if (num != 0) {
             return Result.success();
@@ -90,7 +107,7 @@ public class CinfoController {
 
     @ResponseBody
     @DeleteMapping("/delCinfos/{ids}")
-    public Result delCinfos(@PathVariable("ids") Integer[] ids) {
+    public Result delCinfos(@PathVariable("ids") Integer[] ids,HttpServletRequest request) {
         List<Integer> delIds = new ArrayList<>(ids.length);
         for (Integer i : ids) {
             delIds.add(i);

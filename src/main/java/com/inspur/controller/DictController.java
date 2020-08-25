@@ -66,6 +66,10 @@ public class DictController {
     @ResponseBody
     @PostMapping("/addDict")
     public Result addDict(@RequestBody Dict dict) {
+        List<Dict> dictByName = dictService.queryByDictName(dict.getDictName());
+        if (dictByName.size() > 0) {
+            return Result.fail().setMsg("已有此标签名，不可重复添加！");
+        }
         int num = dictService.add(dict);
         if (num != 0) {
             return Result.success();
@@ -77,17 +81,25 @@ public class DictController {
     @ResponseBody
     @PostMapping("/addDictType")
     public Result addDictType(@RequestBody DictType dictType) {
+        List<DictType> dictTypeByName = dictTypeService.getDictTypeByName(dictType.getDictTypeName());
+        if (dictTypeByName.size() > 0) {
+            return Result.fail().setMsg("已有此字典类型，不可重复添加！");
+        }
         int num = dictTypeService.add(dictType);
         if (num != 0) {
             return Result.success();
         } else {
-            return Result.fail();
+            return Result.fail().setMsg("添加字典类型失败");
         }
     }
 
     @ResponseBody
     @PostMapping("/updateDict")
     public Result updateDict(@RequestBody Dict dict) {
+        List<Dict> dictByName = dictService.queryByDictName(dict.getDictName());
+        if (dictByName.size() > 0) {
+            return Result.fail().setMsg("已有此标签名，不可重复添加！");
+        }
         int num = dictService.update(dict);
         if (num != 0) {
             return Result.success();

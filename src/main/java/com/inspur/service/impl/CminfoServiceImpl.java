@@ -16,8 +16,8 @@ public class CminfoServiceImpl implements CminfoService {
 
     @Override
     public List<Cminfo> list(String cmUnit, String cmId, String cmName, String cmStatus) {
-        CminfoExample CminfoExample = new CminfoExample();
-        CminfoExample.Criteria criteria = CminfoExample.createCriteria();
+        CminfoExample cminfoExample = new CminfoExample();
+        CminfoExample.Criteria criteria = cminfoExample.createCriteria();
         if ("".equals(cmUnit) && "".equals(cmId) && "".equals(cmName) && "".equals(cmStatus)) {
             return cminfoMapper.selectByExample(null);
         }
@@ -36,7 +36,7 @@ public class CminfoServiceImpl implements CminfoService {
         if (!"".equals(cmStatus)) {
             criteria.andCmStatusEqualTo(cmStatus);
         }
-        return cminfoMapper.selectByExample(CminfoExample);
+        return cminfoMapper.selectByExample(cminfoExample);
     }
 
     @Override
@@ -56,10 +56,10 @@ public class CminfoServiceImpl implements CminfoService {
 
     @Override
     public Integer delCminfos(List<Integer> ids) {
-        CminfoExample CminfoExample = new CminfoExample();
-        CminfoExample.Criteria criteria = CminfoExample.createCriteria();
+        CminfoExample cminfoExample = new CminfoExample();
+        CminfoExample.Criteria criteria = cminfoExample.createCriteria();
         criteria.andCmIdIn(ids);
-        return cminfoMapper.deleteByExample(CminfoExample);
+        return cminfoMapper.deleteByExample(cminfoExample);
     }
 
     @Override
@@ -93,5 +93,13 @@ public class CminfoServiceImpl implements CminfoService {
             criteria.andCmLevelEqualTo(cmLevel);
         }
         return cminfoMapper.selectByExample(CminfoExample);
+    }
+
+    @Override
+    public List<Cminfo> getIsNotMember(List<String> names) {
+        CminfoExample cminfoExample = new CminfoExample();
+        CminfoExample.Criteria criteria = cminfoExample.createCriteria();
+        criteria.andCmNameNotIn(names);
+        return cminfoMapper.selectByExample(cminfoExample);
     }
 }

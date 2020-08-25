@@ -74,4 +74,12 @@ public class DictServiceImpl implements DictService {
         criteria.andDictTypeEqualTo(typeName);
         return dictMapper.selectByExample(dictExample);
     }
+
+    @Override
+    public List<Dict> queryByDictName(String dictName) {
+        DictExample dictExample = new DictExample();
+        DictExample.Criteria criteria = dictExample.createCriteria();
+        criteria.andDictNameEqualTo(dictName);
+        return dictMapper.selectByExample(dictExample);
+    }
 }

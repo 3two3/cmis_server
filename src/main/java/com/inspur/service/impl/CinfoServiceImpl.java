@@ -30,7 +30,8 @@ public class CinfoServiceImpl implements CinfoService {
             criteria.andCNameLike(cName);
         }
         if (!"".equals(cSsn)) {
-            criteria.andCSsnEqualTo(cSsn);
+            cSsn = "%" + cSsn + "%";
+            criteria.andCSsnLike(cSsn);
         }
         return cinfoMapper.selectByExample(cinfoExample);
     }

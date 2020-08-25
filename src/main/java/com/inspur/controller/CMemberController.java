@@ -12,11 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin
 @Controller
@@ -40,10 +38,19 @@ public class CMemberController {
             request.getSession().setAttribute("role", member.getRoleId() + "");
             Integer cmId = cMemberService.selectCmIdByName(member);
             request.getSession().setAttribute("cmId", cmId);
+            request.getSession().setAttribute("cmName", member.getMemName());
             return Result.success().add("token", token).add("member", member);
         } else {//登录失败
             return Result.fail();
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/logout")
+    public Result logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();//得到session中所有的属性名
+        session.invalidate();
+        return Result.success();
     }
 
     @ResponseBody
@@ -53,11 +60,15 @@ public class CMemberController {
         //在查询之前只需要调用,传入页码，以及每页的大小
         PageHelper.startPage(pageNum, pageSize);
         List<CMember> cMembers = cMemberService.list(memberId, memberName);
-        List<Cminfo> cminfos = cminfoService.list("", "", "", "");
         //使用pageInfo包装查询后的结果,只需要将pageInfo交给页面就行了
         //封装了详细的分页信息，包括我们查询出来的所有数据,传入连续显示的页数
         PageInfo pageInfo = new PageInfo(cMembers, 5);
         if (cMembers != null) {//查询成功
+            List<String> names = new ArrayList<>();
+            for (CMember cMember : cMembers) {
+                names.add(cMember.getMemName());
+            }
+            List<Cminfo> cminfos = cminfoService.getIsNotMember(names);
             return Result.success().add("pageInfo", pageInfo).add("cminfos", cminfos);
         } else {//查询失败
             return Result.fail();

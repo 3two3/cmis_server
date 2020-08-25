@@ -22,4 +22,6 @@ public interface DictService {
     List<Dict> getDictByType(Integer id);
 
     List<Dict> queryByTypeName(String typeName);
+
+    List<Dict> queryByDictName(String dictName);
 }
