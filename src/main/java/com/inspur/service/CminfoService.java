@@ -20,4 +20,6 @@ public interface CminfoService {
     List<Cminfo> reportList(String cmUnit, String cmStatus, String cmSex, String cmEducation, String cmProfessionalTitles, String cmLevel);
 
     List<Cminfo> getIsNotMember(List<String> names);
+
+    List<Cminfo> getCminfoByCmSsn(String cmSsn);
 }

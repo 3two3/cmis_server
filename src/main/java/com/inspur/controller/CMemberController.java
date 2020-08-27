@@ -39,6 +39,7 @@ public class CMemberController {
             Integer cmId = cMemberService.selectCmIdByName(member);
             request.getSession().setAttribute("cmId", cmId);
             request.getSession().setAttribute("cmName", member.getMemName());
+            request.getSession().setAttribute("member", member);
             return Result.success().add("token", token).add("member", member);
         } else {//登录失败
             return Result.fail();

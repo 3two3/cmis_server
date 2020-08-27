@@ -3,7 +3,7 @@
 <mapper namespace="com.inspur.dao.CmassMapper">
   <resultMap id="BaseResultMap" type="com.inspur.bean.Cmass">
     <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
-    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_ID" jdbcType="INTEGER" property="cmId" />
     <result column="CM_ASSTIME" jdbcType="VARCHAR" property="cmAsstime" />
     <result column="CM_ASSUB" jdbcType="VARCHAR" property="cmAssub" />
     <result column="CM_ASSPERIOD" jdbcType="VARCHAR" property="cmAssperiod" />
@@ -116,7 +116,7 @@
       CM_APPRAISAL, CM_ASSUNIT, CM_REMARK, 
       CM_ATTACHMENT, CM_MODIFICATION_PERSON, CM_MODIFICATION_DATE, 
       CM_REMARKS, DEL_FLAG)
-    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmAsstime,jdbcType=VARCHAR}, 
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=INTEGER}, #{cmAsstime,jdbcType=VARCHAR},
       #{cmAssub,jdbcType=VARCHAR}, #{cmAssperiod,jdbcType=VARCHAR}, #{cmAssresult,jdbcType=VARCHAR}, 
       #{cmAppraisal,jdbcType=VARCHAR}, #{cmAssunit,jdbcType=VARCHAR}, #{cmRemark,jdbcType=VARCHAR}, 
       #{cmAttachment,jdbcType=VARCHAR}, #{cmModificationPerson,jdbcType=VARCHAR}, #{cmModificationDate,jdbcType=VARCHAR}, 
@@ -173,7 +173,7 @@
         #{cmKey,jdbcType=INTEGER},
       </if>
       <if test="cmId != null">
-        #{cmId,jdbcType=CHAR},
+        #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmAsstime != null">
         #{cmAsstime,jdbcType=VARCHAR},
@@ -226,7 +226,7 @@
         CM_KEY = #{record.cmKey,jdbcType=INTEGER},
       </if>
       <if test="record.cmId != null">
-        CM_ID = #{record.cmId,jdbcType=CHAR},
+        CM_ID = #{record.cmId,jdbcType=INTEGER},
       </if>
       <if test="record.cmAsstime != null">
         CM_ASSTIME = #{record.cmAsstime,jdbcType=VARCHAR},
@@ -272,7 +272,7 @@
   <update id="updateByExample" parameterType="map">
     update gzcrm_cmass
     set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
-      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_ID = #{record.cmId,jdbcType=INTEGER},
       CM_ASSTIME = #{record.cmAsstime,jdbcType=VARCHAR},
       CM_ASSUB = #{record.cmAssub,jdbcType=VARCHAR},
       CM_ASSPERIOD = #{record.cmAssperiod,jdbcType=VARCHAR},
@@ -293,7 +293,7 @@
     update gzcrm_cmass
     <set>
       <if test="cmId != null">
-        CM_ID = #{cmId,jdbcType=CHAR},
+        CM_ID = #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmAsstime != null">
         CM_ASSTIME = #{cmAsstime,jdbcType=VARCHAR},
@@ -336,7 +336,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Cmass">
     update gzcrm_cmass
-    set CM_ID = #{cmId,jdbcType=CHAR},
+    set CM_ID = #{cmId,jdbcType=INTEGER},
       CM_ASSTIME = #{cmAsstime,jdbcType=VARCHAR},
       CM_ASSUB = #{cmAssub,jdbcType=VARCHAR},
       CM_ASSPERIOD = #{cmAssperiod,jdbcType=VARCHAR},

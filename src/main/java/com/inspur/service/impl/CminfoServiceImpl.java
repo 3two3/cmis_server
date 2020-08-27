@@ -102,4 +102,12 @@ public class CminfoServiceImpl implements CminfoService {
         criteria.andCmNameNotIn(names);
         return cminfoMapper.selectByExample(cminfoExample);
     }
+
+    @Override
+    public List<Cminfo> getCminfoByCmSsn(String cmSsn) {
+        CminfoExample cminfoExample = new CminfoExample();
+        CminfoExample.Criteria criteria = cminfoExample.createCriteria();
+        criteria.andCmSsnEqualTo(cmSsn);
+        return cminfoMapper.selectByExample(cminfoExample);
+    }
 }

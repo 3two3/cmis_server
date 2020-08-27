@@ -3,7 +3,7 @@
 <mapper namespace="com.inspur.dao.CmresultsMapper">
   <resultMap id="BaseResultMap" type="com.inspur.bean.Cmresults">
     <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
-    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_ID" jdbcType="INTEGER" property="cmId" />
     <result column="CM_YEAR" jdbcType="VARCHAR" property="cmYear" />
     <result column="CM_RESULT" jdbcType="VARCHAR" property="cmResult" />
     <result column="CM_ATTACHMENT" jdbcType="VARCHAR" property="cmAttachment" />
@@ -109,7 +109,7 @@
       CM_RESULT, CM_ATTACHMENT, CM_MODIFICATION_DATE, 
       CM_MODIFICATION_PERSON, CM_REMARKS, DEL_FLAG
       )
-    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmYear,jdbcType=VARCHAR}, 
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=INTEGER}, #{cmYear,jdbcType=VARCHAR},
       #{cmResult,jdbcType=VARCHAR}, #{cmAttachment,jdbcType=VARCHAR}, #{cmModificationDate,jdbcType=VARCHAR}, 
       #{cmModificationPerson,jdbcType=VARCHAR}, #{cmRemarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}
       )
@@ -150,7 +150,7 @@
         #{cmKey,jdbcType=INTEGER},
       </if>
       <if test="cmId != null">
-        #{cmId,jdbcType=CHAR},
+        #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmYear != null">
         #{cmYear,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
         CM_KEY = #{record.cmKey,jdbcType=INTEGER},
       </if>
       <if test="record.cmId != null">
-        CM_ID = #{record.cmId,jdbcType=CHAR},
+        CM_ID = #{record.cmId,jdbcType=INTEGER},
       </if>
       <if test="record.cmYear != null">
         CM_YEAR = #{record.cmYear,jdbcType=VARCHAR},
@@ -219,7 +219,7 @@
   <update id="updateByExample" parameterType="map">
     update gzcrm_cmresults
     set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
-      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_ID = #{record.cmId,jdbcType=INTEGER},
       CM_YEAR = #{record.cmYear,jdbcType=VARCHAR},
       CM_RESULT = #{record.cmResult,jdbcType=VARCHAR},
       CM_ATTACHMENT = #{record.cmAttachment,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
     update gzcrm_cmresults
     <set>
       <if test="cmId != null">
-        CM_ID = #{cmId,jdbcType=CHAR},
+        CM_ID = #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmYear != null">
         CM_YEAR = #{cmYear,jdbcType=VARCHAR},
@@ -263,7 +263,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Cmresults">
     update gzcrm_cmresults
-    set CM_ID = #{cmId,jdbcType=CHAR},
+    set CM_ID = #{cmId,jdbcType=INTEGER},
       CM_YEAR = #{cmYear,jdbcType=VARCHAR},
       CM_RESULT = #{cmResult,jdbcType=VARCHAR},
       CM_ATTACHMENT = #{cmAttachment,jdbcType=VARCHAR},

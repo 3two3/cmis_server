@@ -3,7 +3,7 @@
 <mapper namespace="com.inspur.dao.CmrprMapper">
   <resultMap id="BaseResultMap" type="com.inspur.bean.Cmrpr">
     <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
-    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_ID" jdbcType="INTEGER" property="cmId" />
     <result column="CM_TPYE" jdbcType="VARCHAR" property="cmTpye" />
     <result column="CM_SUB" jdbcType="VARCHAR" property="cmSub" />
     <result column="CM_DATE" jdbcType="VARCHAR" property="cmDate" />
@@ -118,7 +118,7 @@
       CM_REMARK, CM_ATTACHMENT, CM_MODIFICATION_DATE, 
       CM_MODIFICATION_PERSON, CM_REMARKS, DEL_FLAG
       )
-    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmTpye,jdbcType=VARCHAR}, 
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=INTEGER}, #{cmTpye,jdbcType=VARCHAR},
       #{cmSub,jdbcType=VARCHAR}, #{cmDate,jdbcType=VARCHAR}, #{cmAunit,jdbcType=VARCHAR}, 
       #{cmAperson,jdbcType=VARCHAR}, #{cmRdate,jdbcType=VARCHAR}, #{cmAreason,jdbcType=VARCHAR}, 
       #{cmRemark,jdbcType=VARCHAR}, #{cmAttachment,jdbcType=VARCHAR}, #{cmModificationDate,jdbcType=VARCHAR}, 
@@ -179,7 +179,7 @@
         #{cmKey,jdbcType=INTEGER},
       </if>
       <if test="cmId != null">
-        #{cmId,jdbcType=CHAR},
+        #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmTpye != null">
         #{cmTpye,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
         CM_KEY = #{record.cmKey,jdbcType=INTEGER},
       </if>
       <if test="record.cmId != null">
-        CM_ID = #{record.cmId,jdbcType=CHAR},
+        CM_ID = #{record.cmId,jdbcType=INTEGER},
       </if>
       <if test="record.cmTpye != null">
         CM_TPYE = #{record.cmTpye,jdbcType=VARCHAR},
@@ -284,7 +284,7 @@
   <update id="updateByExample" parameterType="map">
     update gzcrm_cmrpr
     set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
-      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_ID = #{record.cmId,jdbcType=INTEGER},
       CM_TPYE = #{record.cmTpye,jdbcType=VARCHAR},
       CM_SUB = #{record.cmSub,jdbcType=VARCHAR},
       CM_DATE = #{record.cmDate,jdbcType=VARCHAR},
@@ -306,7 +306,7 @@
     update gzcrm_cmrpr
     <set>
       <if test="cmId != null">
-        CM_ID = #{cmId,jdbcType=CHAR},
+        CM_ID = #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmTpye != null">
         CM_TPYE = #{cmTpye,jdbcType=VARCHAR},
@@ -352,7 +352,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Cmrpr">
     update gzcrm_cmrpr
-    set CM_ID = #{cmId,jdbcType=CHAR},
+    set CM_ID = #{cmId,jdbcType=INTEGER},
       CM_TPYE = #{cmTpye,jdbcType=VARCHAR},
       CM_SUB = #{cmSub,jdbcType=VARCHAR},
       CM_DATE = #{cmDate,jdbcType=VARCHAR},

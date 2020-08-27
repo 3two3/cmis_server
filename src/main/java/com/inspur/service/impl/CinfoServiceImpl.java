@@ -63,4 +63,12 @@ public class CinfoServiceImpl implements CinfoService {
         criteria.andCKeyIn(delIds);
         return cinfoMapper.deleteByExample(cinfoExample);
     }
+
+    @Override
+    public List<Cinfo> getCinfoByCSsn(String cSsn) {
+        CinfoExample cinfoExample = new CinfoExample();
+        CinfoExample.Criteria criteria = cinfoExample.createCriteria();
+        criteria.andCSsnEqualTo(cSsn);
+        return cinfoMapper.selectByExample(cinfoExample);
+    }
 }

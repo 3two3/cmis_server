@@ -10,6 +10,7 @@ import com.inspur.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,16 @@ public class CminfoController {
         } else {//查询失败
             return Result.fail();
         }
+    }
+
+    @ResponseBody
+    @PostMapping("/checkIdCardIsOnly")
+    public Result checkIdCardIsOnly(@RequestParam("idCard") String idCard) {
+        List<Cminfo> cminfoByCmSsn = cminfoService.getCminfoByCmSsn(idCard);
+        if (cminfoByCmSsn.size() > 0) {
+            return Result.fail();
+        }
+        return Result.success();
     }
 
     @ResponseBody

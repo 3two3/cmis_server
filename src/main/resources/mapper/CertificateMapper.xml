@@ -3,7 +3,7 @@
 <mapper namespace="com.inspur.dao.CertificateMapper">
   <resultMap id="BaseResultMap" type="com.inspur.bean.Certificate">
     <id column="CM_KEY" jdbcType="INTEGER" property="cmKey" />
-    <result column="CM_ID" jdbcType="CHAR" property="cmId" />
+    <result column="CM_ID" jdbcType="INTEGER" property="cmId" />
     <result column="CM_CERTIFICATE_NAME" jdbcType="VARCHAR" property="cmCertificateName" />
     <result column="CM_CERTIFICATE_TYPE" jdbcType="VARCHAR" property="cmCertificateType" />
     <result column="CM_CERTIFICATE_NO" jdbcType="VARCHAR" property="cmCertificateNo" />
@@ -119,7 +119,7 @@
       CM_CERTIFICATE_URL, CM_INVALID, CM_REMARK, 
       CM_MODIFICATION_DATE, CM_MODIFICATION_PERSON, 
       CM_REMARKS, DEL_FLAG)
-    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=CHAR}, #{cmCertificateName,jdbcType=VARCHAR}, 
+    values (#{cmKey,jdbcType=INTEGER}, #{cmId,jdbcType=INTEGER}, #{cmCertificateName,jdbcType=VARCHAR},
       #{cmCertificateType,jdbcType=VARCHAR}, #{cmCertificateNo,jdbcType=VARCHAR}, #{cmCertificateUnit,jdbcType=VARCHAR}, 
       #{cmStartDate,jdbcType=VARCHAR}, #{cmEndDate,jdbcType=VARCHAR}, #{cmPeriod,jdbcType=INTEGER}, 
       #{cmCertificateUrl,jdbcType=VARCHAR}, #{cmInvalid,jdbcType=VARCHAR}, #{cmRemark,jdbcType=VARCHAR}, 
@@ -183,7 +183,7 @@
         #{cmKey,jdbcType=INTEGER},
       </if>
       <if test="cmId != null">
-        #{cmId,jdbcType=CHAR},
+        #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmCertificateName != null">
         #{cmCertificateName,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
         CM_KEY = #{record.cmKey,jdbcType=INTEGER},
       </if>
       <if test="record.cmId != null">
-        CM_ID = #{record.cmId,jdbcType=CHAR},
+        CM_ID = #{record.cmId,jdbcType=INTEGER},
       </if>
       <if test="record.cmCertificateName != null">
         CM_CERTIFICATE_NAME = #{record.cmCertificateName,jdbcType=VARCHAR},
@@ -294,7 +294,7 @@
   <update id="updateByExample" parameterType="map">
     update gzcrm_certificate
     set CM_KEY = #{record.cmKey,jdbcType=INTEGER},
-      CM_ID = #{record.cmId,jdbcType=CHAR},
+      CM_ID = #{record.cmId,jdbcType=INTEGER},
       CM_CERTIFICATE_NAME = #{record.cmCertificateName,jdbcType=VARCHAR},
       CM_CERTIFICATE_TYPE = #{record.cmCertificateType,jdbcType=VARCHAR},
       CM_CERTIFICATE_NO = #{record.cmCertificateNo,jdbcType=VARCHAR},
@@ -317,7 +317,7 @@
     update gzcrm_certificate
     <set>
       <if test="cmId != null">
-        CM_ID = #{cmId,jdbcType=CHAR},
+        CM_ID = #{cmId,jdbcType=INTEGER},
       </if>
       <if test="cmCertificateName != null">
         CM_CERTIFICATE_NAME = #{cmCertificateName,jdbcType=VARCHAR},
@@ -366,7 +366,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.inspur.bean.Certificate">
     update gzcrm_certificate
-    set CM_ID = #{cmId,jdbcType=CHAR},
+    set CM_ID = #{cmId,jdbcType=INTEGER},
       CM_CERTIFICATE_NAME = #{cmCertificateName,jdbcType=VARCHAR},
       CM_CERTIFICATE_TYPE = #{cmCertificateType,jdbcType=VARCHAR},
       CM_CERTIFICATE_NO = #{cmCertificateNo,jdbcType=VARCHAR},

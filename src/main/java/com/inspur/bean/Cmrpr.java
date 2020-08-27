@@ -3,7 +3,7 @@ package com.inspur.bean;
 public class Cmrpr {
     private Integer cmKey;
 
-    private String cmId;
+    private Integer cmId;
 
     private String cmTpye;
 
@@ -39,12 +39,12 @@ public class Cmrpr {
         this.cmKey = cmKey;
     }
 
-    public String getCmId() {
+    public Integer getCmId() {
         return cmId;
     }
 
-    public void setCmId(String cmId) {
-        this.cmId = cmId == null ? null : cmId.trim();
+    public void setCmId(Integer cmId) {
+        this.cmId = cmId;
     }
 
     public String getCmTpye() {

@@ -44,6 +44,16 @@ public class CinfoController {
     }
 
     @ResponseBody
+    @PostMapping("/checkIdCardIsOnly")
+    public Result checkIdCardIsOnly(@RequestParam("idCard") String idCard) {
+        List<Cinfo> cinfoByCmSsn = cinfoService.getCinfoByCSsn(idCard);
+        if (cinfoByCmSsn.size() > 0) {
+            return Result.fail();
+        }
+        return Result.success();
+    }
+
+    @ResponseBody
     @PostMapping("/addCinfo")
     public Result addCminfo(@RequestBody Cinfo cinfo, HttpServletRequest request) {
         Object cmId = request.getSession().getAttribute("cmId");
@@ -107,7 +117,7 @@ public class CinfoController {
 
     @ResponseBody
     @DeleteMapping("/delCinfos/{ids}")
-    public Result delCinfos(@PathVariable("ids") Integer[] ids,HttpServletRequest request) {
+    public Result delCinfos(@PathVariable("ids") Integer[] ids, HttpServletRequest request) {
         List<Integer> delIds = new ArrayList<>(ids.length);
         for (Integer i : ids) {
             delIds.add(i);
